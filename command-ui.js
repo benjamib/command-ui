@@ -1,24 +1,29 @@
 var i = 0;
-var txt = 'Lorem ipsum dummy text blabla.';
-var speed = 50;
+var txt = '';
+var speed = 40;
 var cmdHistory=[];
 var cmdHistoryIndex=0;
-var loc = Loc_Sector_1;
+/*var loc = Loc_Sector_1;
 var lsArr = new Map();
-/*class location{
-    constructor(){
-        this.name = "test";
-    }
-}*/
+*/
 
 document.addEventListener("mouseup", handleEvent);
 window.addEventListener("load", initGame);
 function initGame()
 {
+    /*var elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    }*/
+   
     var initText = "booting SAM [Ship AutoMation]----------------------- done\nconnecting to ship main system---------------------- done\nlife support---------------------------------------- online\nadvanced diagnostics-------------------------------- online\nsensors suite--------------------------------------- online\nreactor core---------------------------------------- operational\nbooting nav system---------------------------------- done\nAll Systems 100% Begin Operation...";
     initText+="Hi! I am SAM, the Ship AutoMation system.\n";
     initText+="SAy something funny and wittty that endears this character to the player...";
-    typeWriter(initText);
+    typeWriter("reboot system...")
+    setTimeout(function () {
+       typeWriter(initText);
+    }, 5000);
+    
 }
 function handleEvent()
 {
@@ -76,164 +81,132 @@ function processInput()
 }
 function processCommand(cmd)
 {
-    cmdHistory.push(cmd);
-    cmdHistoryIndex=0;
-    var myArray = /(^\w+)\b/g.exec(cmd);
-   
-    if (myArray === null)
-    {
-        return "command '" + cmd +"' is not recognized";
-    }
-    switch(myArray[1])
+  cmdHistory.push(cmd);
+  cmdHistoryIndex=0;
+  var cmdArray =  cmd.split(" ");
+  if (cmdArray === null || cmdArray.length > 2)
+  {
+        typeWriter("command '" + cmd +"' is not recognized");
+        return;
+  }
+    switch(cmdArray[0])
     {
         case "move":
-            return processMove(cmd);
+            return handleMove(cmdArray[1]);
         case "look":
-            return processLook(cmd);
-        case "scan":
-            return processScan(cmd);
-        case "status":
-            return processStatus(cmd);
-        case "about":
-            return processAbout(cmd);
+            return handleLook(cmdArray[1]);
+        /*case "scan":
+            return processScan(cmdArray[1]);*/
         case "echo":
-            return processEcho(cmd);
+            return processEcho(cmdArray[1]);
         case "clear":
             return "";
-        case "help":
-            return processHelp();
+        /*case "help":
+            return processHelp();*/
         case "ping":
             return "pong!";
-        case "set":
-            return processSet(cmd);
-        case "hi":
-            return "hello captain, what can I do for you?";
+        case "read":
+            return read(cmdArray[1]);
         case "where":
-            return "Location:" + loc.name + "\nSystem:" + loc.system;
+            return where();
+        case "whereami":
+            return where();
+        case "whoami":
+            return whoami();
+        case "SAM":
+            return SAM();
+        case "help":
+            return help();
+        case "ship":
+            return ship();
+        case "logs":
+            return DisplayLogs();
         default:
             return "command '" + cmd +"' is not recognized";
     }
 }
-function processLook(cmd)
+function processCommandServer(cmd)
 {
-    var myArray = /^look (.+)?\s*$/g.exec(cmd);
-    if(myArray===null)
-        return loc.look.around;
-    switch(myArray[1])
-    {
-        case "around":
-            return loc.look.around;
-        case "north":
-            return loc.look.north;
-         case "east":
-            return loc.look.east;
-         case "south":
-            return loc.look.south;
-             case "west":
-            return loc.look.west;
-        
-        default:
-            return "I don't know wht you are trying to look at with '" + cmd +"'. Please try looking another way.";
-    }
+  cmdHistory.push(cmd);
+  cmdHistoryIndex=0;
+  cmd = cmd.toLowerCase();
+  var cmdArray =  cmd.split(" ");
+  if (cmdArray === null || cmdArray.length > 2)
+  {
+        typeWriter("command '" + cmd +"' is not recognized");
+        return;
+  }
+  var url = '/'+ cmdArray[0] +'?param=' + cmdArray[1];
+  fetch(url).then(function(response) {
+    response.text().then(function(text) {
+      typeWriter(JSON.parse(text));
+	  });
+  });
 }
-function processMove(cmd)
+function handleLook(direction)
 {
-    var myArray = /^move (.+)?\s*$/g.exec(cmd);
-    if(myArray===null)
-        return "Please indicate where I should move to..."
-    switch(myArray[1])
-    {
-        case "north":
-            loc = loc.move.north;
-            break;
-        case "east":
-            loc = loc.move.east;
-            break;
-        case "south":
-            loc = loc.move.south;
-            break;
-        case "west":
-            loc =  loc.move.west;
-            break;
-        default:
-            return "I don't know wht you are trying to look at with '" + cmd +"'. Please try looking another way.";
-    }
-    return "You move " + myArray[1];
+  var param = "around";
+  if(direction !== undefined){
+		param = direction;
+	}
+  if(param === "around"){
+    return CurrentLocation().look;
+  }
+  else if(param === "north"){
+    return CurrentLocation().lookNorth();
+  }
+  else if(param === "south"){
+    return CurrentLocation().lookSouth();
+  }
+  else if(param == "east"){
+    return CurrentLocation().lookEast();
+  }
+  else if(param === "west"){
+    return CurrentLocation().lookWest();
+  }
+  else{
+    return "I do not know how to look at " + direction;
+  }
 }
-function processScan(cmd)
-{
-    var myArray = /^scan (.+)?\s*$/g.exec(cmd);
-    if(myArray===null)
-        return loc.scan.around;
-    switch(myArray[1])
-    {
-        default:
-            return "I can't scan " + myArray[1];
-    }
+function handleMove(direction){
+  if(direction === "north"){
+    return MoveNorth();
+  }
+  else if(direction === "south"){
+    return MoveSouth();
+  }
+  else if(direction == "east"){
+    return MoveEast();
+  }
+  else if(direction === "west"){
+    return MoveWest();
+  }
+  else{
+    return "I do not know how to move " + param;
+  }
 }
-function processEcho(cmd)
-{
-    var myArray = /^echo (.+)?\s*$/g.exec(cmd);
-    return myArray[1];
-}
-function processHelp()
-{
-    var help_str ="";
-    help_str="===HELP===\n";
-    help_str+="The following commands are supported:\n";
-    help_str+="1- 'echo [text]': will print to the screen any text [text] after echo\n";
-    help_str+="2- 'clear': clear the output screen\n";
-    help_str+="3- 'help': display the help menu\n";
-    return help_str;
-}
+read = function(param){
+  if(param === ""){
+		return "Need to specify a log number";
+	}
+	return ReadLog(param);
+};
+where = function(){
+  return GetLocation();
+};
+whoami = function(){
+  return GetWhoami();
+};
+SAM = function(){
+  return GetAboutSAM();
+};
+help = function(){
+  return GetHelp();
+};
+ship = function(){
+  return GetShip();
+};
+log = function(){
+  return DisplayLogs();
+};
 
-
-function processStatus(cmd)
-{
-    var myArray = /^status (.+)?\s*$/g.exec(cmd);
-    if(myArray===null)
-        return JSON.stringify(ship);
-    switch(myArray[1])
-    {
-        case "ship":
-            return JSON.stringify(ship.Status);
-        case "crew":
-            //processCrewStatus();
-            return "crew status";
-        default:
-            return "Can't get the status of " + myArray[1];
-    }
-}
-function processAbout(cmd)
-{
-    var myArray = /^about (.+)?\s*$/g.exec(cmd);
-    if(myArray===null)
-        return "What do you want to know about...?";
-    switch(myArray[1])
-    {
-        case ship.name:
-        case "ship":
-            return ship.about;
-        case "system":
-            //return processAboutSystem(cmd);
-            return "you are in a system, hmmm....";
-        case "SAM":
-            return SAM.about;
-
-        default:
-            return "I don't know about " + myArray[1];
-    }
-}
-function processSet(cmd)
-{
-    
-    var myArray=/^set (.+)\b\.(.+)\b\s(.+)\b$/g.exec(cmd);
-    
-    if(myArray!==null)
-    {
-        if(myArray[1] ==="ship")
-        {
-            return "Ship " + myArray[2] + " is " + myArray[3];
-        }
-    }
-}
