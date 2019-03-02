@@ -23,17 +23,6 @@ class GameState{
   }
 }
 
-var myEvent = new CustomEvent('test',{detail:"WTF!"});
-document.addEventListener('test', function (e) {
-  alert(e.detail);
-}, false);
-
-var myEvent2 = new CustomEvent('test',{detail:"WHAT THE FUCK!"});
-// Dispatch the event.
-document.dispatchEvent(myEvent);
-document.dispatchEvent(myEvent2);
-
-
 function GetAboutSAM(){
   return gs.SAM.about;
 }
@@ -122,8 +111,11 @@ class Location{
       "x":x,
       "y":y,
     };
-    
   }
+  registerEventHandler(type,func){
+    document.addEventListener(type, func, false);
+  }
+  
   get look(){
     return this.__look;
   }
@@ -197,6 +189,7 @@ class SpaceObject{
     this.name = name;
     this.canTake = canTake;
     this.details = "";
+    this.dialog = {};
   }
 }
 function CurrentLocation(){
@@ -205,7 +198,6 @@ function CurrentLocation(){
 function MoveNorth(){
   if(gs.currentLocation.north!==""){
     gs.currentLocation = gs.currentLocation.north;
-    
     return "Moved north";
   }
   return "Can't move further north...";
@@ -309,6 +301,18 @@ log5.content = "!!!SAM AUTOMATED MESSAGE!!!\nSystem reboot at 14:54:45.5656\n\nE
 Logs.push(log5);
 
 
+Ferra.registerEventHandler('move',triggerMoveToFerra);
+Aegia.registerEventHandler('move',triggerMoveToAegia);
+function triggerMoveToFerra(e)
+{
+  if(e.detail ==="Ferra")
+    typeWriter("this was triggered by moving into the ferra location");
+}
+function triggerMoveToAegia(e)
+{
+  if(e.detail ==="Aegia")
+    typeWriter("this was triggered by moving into the " + e.detail + " location");
+}
 
 
 

@@ -11,10 +11,10 @@ document.addEventListener("mouseup", handleEvent);
 window.addEventListener("load", initGame);
 function initGame()
 {
-    /*var elem = document.documentElement;
+    var elem = document.documentElement;
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
-    }*/
+    }
    
     var initText = "booting SAM [Ship AutoMation]----------------------- done\nconnecting to ship main system---------------------- done\nlife support---------------------------------------- online\nadvanced diagnostics-------------------------------- online\nsensors suite--------------------------------------- online\nreactor core---------------------------------------- operational\nbooting nav system---------------------------------- done\nAll Systems 100% Begin Operation...";
     initText+="Hi! I am SAM, the Ship AutoMation system.\n";
@@ -29,6 +29,8 @@ function handleEvent()
 {
     document.getElementById("command-line").focus();
 }
+
+
 
 function typeWriter(textToWrite) {
 
@@ -62,6 +64,9 @@ function processInput()
             var txt = processCommand(cmd);
             typeWriter(txt);
             cmd_obj.value="";
+            var myEvent = new CustomEvent(cmd.split(" ")[0],{detail:gs.currentLocation.name});
+            // Dispatch the event.
+            document.dispatchEvent(myEvent);
         }
 
     }
@@ -182,7 +187,7 @@ function handleMove(direction){
     return MoveWest();
   }
   else{
-    return "I do not know how to move " + param;
+    return "I do not know how to move " + direction;
   }
 }
 read = function(param){

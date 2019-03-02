@@ -8,12 +8,18 @@
 
 body{
     color:rgb(50,255,0);
-    background:#000;
+    /*background:#000;*/
     font-family: "VT323",monospace;
     letter-spacing: .1em;
     font-size: 24px;
     -webkit-font-smoothing: none;
     line-height: 1.2;
+    background-color: black;
+    background-image: radial-gradient(
+    rgba(0, 150, 0, 0.6), black 120%
+  );
+  
+  height: 100vh;
 }
 .command {
   background-color: transparent;
@@ -218,7 +224,7 @@ body{
   opacity: 0;
   z-index: 2;
   pointer-events: none;
-  animation: flicker .3s infinite;
+  /*animation: flicker 10.3s infinite;*/
 }
 .crt::before {
   content: " ";
@@ -234,7 +240,8 @@ body{
   pointer-events: none;
 }
 .crt {
-  animation: textShadow 1.6s infinite;
+  /*animation: textShadow 1.6s infinite;*/
+  text-shadow: 0 0 10px #C8C8C8;
 }
 .error {
   background-color: transparent;
