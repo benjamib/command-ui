@@ -22,7 +22,6 @@ class GameState{
     };
   }
 }
-
 function GetAboutSAM(){
   return gs.SAM.about;
 }
@@ -189,7 +188,7 @@ class SpaceObject{
     this.name = name;
     this.canTake = canTake;
     this.details = "";
-    this.dialog = {};
+    this.dialog = null;
   }
 }
 function CurrentLocation(){
@@ -275,13 +274,15 @@ ReadLog = function(index){
 
 /*Game Data*/
 
+let Station_067 = new SpaceObject("station_067",false);
+Station_067.dialog = StationDialog;
 let Aegia = new Location("Aegia",5,10);
 let Ferra = new Location("Ferra",5,11);
 let AX1 = new Location("AX1",6,10);
 AX1.look = "It's a shipyard, there are lots of ships...";
 Ferra.look = "It's a moon!";
 Aegia.look = "Aegia, the bustling center of the Aegis system. The planet is flecked with whisps of violet and teal clouds over land of deep green and wheat, and vast oceans of the deepest blue. AX1, a shipyard, is slightly to east of your view, humming with activity. Ferra, the Aegian moon, is just peeking over the horizon of Aegia, stone gray.";
-Aegia.addObject("rock");
+Aegia.addObject(Station_067);
 Aegia.north = Ferra;
 Aegia.east = AX1;
 let gs = new GameState(Aegia,[],{});
@@ -313,6 +314,17 @@ function triggerMoveToAegia(e)
   if(e.detail ==="Aegia")
     typeWriter("this was triggered by moving into the " + e.detail + " location");
 }
-
+function handleHello(param){
+  if(param === undefined){
+    return "can't establish connection to " + param;
+  }
+  let obj = gs.currentLocation.objects.find(function(e){ return e.name === param;});
+  if(obj !== undefined){
+    process("station_1",obj.dialog);
+  }
+  else{
+    return "can't establish connection to " + param;
+  }
+}
 
 

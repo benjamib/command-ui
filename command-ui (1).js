@@ -14,12 +14,12 @@ function initGame()
     /*var elem = document.documentElement;
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
-    }
-   */
+    }*/
+   
     var initText = "booting SAM [Ship AutoMation]----------------------- done\nconnecting to ship main system---------------------- done\nlife support---------------------------------------- online\nadvanced diagnostics-------------------------------- online\nsensors suite--------------------------------------- online\nreactor core---------------------------------------- operational\nbooting nav system---------------------------------- done\nAll Systems 100% Begin Operation...";
     initText+="Hi! I am SAM, the Ship AutoMation system.\n";
     initText+="SAy something funny and wittty that endears this character to the player...";
-    typeWriter("reboot system...");
+    typeWriter("reboot system...")
     setTimeout(function () {
        typeWriter(initText);
     }, 5000);
@@ -29,8 +29,6 @@ function handleEvent()
 {
     document.getElementById("command-line").focus();
 }
-
-
 
 function typeWriter(textToWrite) {
 
@@ -62,11 +60,7 @@ function processInput()
         {
             
             var txt = processCommand(cmd);
-            typeWriter(txt);
             cmd_obj.value="";
-            var myEvent = new CustomEvent(cmd.split(" ")[0],{detail:gs.currentLocation.name});
-            // Dispatch the event.
-            document.dispatchEvent(myEvent);
         }
 
     }
@@ -88,6 +82,7 @@ function processCommand(cmd)
 {
   cmdHistory.push(cmd);
   cmdHistoryIndex=0;
+  cmd = cmd.toLowerCase();
   var cmdArray =  cmd.split(" ");
   if (cmdArray === null || cmdArray.length > 2)
   {
@@ -97,37 +92,23 @@ function processCommand(cmd)
     switch(cmdArray[0])
     {
         case "move":
-            return handleMove(cmdArray[1]);
+            return processMove(cmdArray[1]);
         case "look":
-            return handleLook(cmdArray[1]);
-        /*case "scan":
-            return processScan(cmdArray[1]);*/
+            return processLook(cmdArray[1]);
+        case "scan":
+            return processScan(cmdArray[1]);
+        case "status":
+            return processStatus(cmdArray[1]);
+        case "about":
+            return processAbout(cmdArray[1]);
         case "echo":
             return processEcho(cmdArray[1]);
         case "clear":
             return "";
-        /*case "help":
-            return processHelp();*/
+        case "help":
+            return processHelp();
         case "ping":
             return "pong!";
-        case "read":
-            return read(cmdArray[1]);
-        case "where":
-            return where();
-        case "whereami":
-            return where();
-        case "whoami":
-            return whoami();
-        case "SAM":
-            return SAM();
-        case "help":
-            return help();
-        case "ship":
-            return ship();
-        case "logs":
-            return DisplayLogs();
-        case "hello":
-            return hello(cmdArray[1]);
         default:
             return "command '" + cmd +"' is not recognized";
     }
@@ -152,23 +133,19 @@ function processCommandServer(cmd)
 }
 function handleLook(direction)
 {
-  var param = "around";
-  if(direction !== undefined){
-		param = direction;
-	}
-  if(param === "around"){
+  if(direction === "around"){
     return CurrentLocation().look;
   }
-  else if(param === "north"){
+  else if(direction === "north"){
     return CurrentLocation().lookNorth();
   }
-  else if(param === "south"){
+  else if(direction === "south"){
     return CurrentLocation().lookSouth();
   }
-  else if(param == "east"){
+  else if(direction == "east"){
     return CurrentLocation().lookEast();
   }
-  else if(param === "west"){
+  else if(direction === "west"){
     return CurrentLocation().lookWest();
   }
   else{
@@ -189,34 +166,6 @@ function handleMove(direction){
     return MoveWest();
   }
   else{
-    return "I do not know how to move " + direction;
+    return "I do not know how to move " + param;
   }
 }
-read = function(param){
-  if(param === ""){
-		return "Need to specify a log number";
-	}
-	return ReadLog(param);
-};
-where = function(){
-  return GetLocation();
-};
-whoami = function(){
-  return GetWhoami();
-};
-SAM = function(){
-  return GetAboutSAM();
-};
-help = function(){
-  return GetHelp();
-};
-ship = function(){
-  return GetShip();
-};
-log = function(){
-  return DisplayLogs();
-};
-hello =function(param){
-  return handleHello(param);
-}
-
