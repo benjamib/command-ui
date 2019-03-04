@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="type-writer.js"></script>
     <script src="dialog.js"></script>
     <script src="data.js" ></script>
     <script src="command-ui.js"></script>
@@ -8,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="command-ui.css">
 </head>
 <body class="crt">
-  <dialog class="crt" id="dialog">Ok...</dialog>
+  
   <p class ="error">ERROR...</p>
   <textarea class="output crt" id="demo">_</textarea>
   <div class="console" id="console">
@@ -17,7 +18,13 @@
       <div class="line"><span>$</span>&nbsp;
         <input id="command-line" class="command crt" data-input="data-input" onkeydown="processInput()"/>
       </div>
+      
     </div>
+    <dialog class="crt" id="dialog">
+      <div id="content"></div>
+      <div class="btn-group crt">
+      </div>
+    </dialog>
   </div>
 </body>
 </html>

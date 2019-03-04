@@ -320,7 +320,9 @@ function handleHello(param){
   }
   let obj = gs.currentLocation.objects.find(function(e){ return e.name === param;});
   if(obj !== undefined){
-    process("station_1",obj.dialog);
+    currentDialogMap = obj.dialog;
+    process("station_1");
+    return "Establishing comm link...\nConnected..."
   }
   else{
     return "can't establish connection to " + param;

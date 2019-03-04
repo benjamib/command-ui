@@ -29,26 +29,6 @@ function handleEvent()
 {
     document.getElementById("command-line").focus();
 }
-
-
-
-function typeWriter(textToWrite) {
-
-    i=0;
-    document.getElementById("demo").innerHTML = "";
-    txt = textToWrite;
-    type();
-}
-function type(){
-
-  if (i < txt.length)
-  {
-    document.getElementById("demo").innerHTML += txt.charAt(i);
-    i++;
-    setTimeout(type, speed);
-  }
-  
-}
 function processInput()
 {
     var key = event.keyCode;
@@ -106,8 +86,6 @@ function processCommand(cmd)
             return processEcho(cmdArray[1]);
         case "clear":
             return "";
-        /*case "help":
-            return processHelp();*/
         case "ping":
             return "pong!";
         case "read":
