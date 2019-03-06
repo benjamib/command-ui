@@ -1,6 +1,5 @@
 var i = 0;
 var txt = '';
-var speed = 40;
 var cmdHistory=[];
 var cmdHistoryIndex=0;
 /*var loc = Loc_Sector_1;
@@ -16,14 +15,14 @@ function initGame()
       elem.requestFullscreen();
     }
    */
-    var initText = "booting SAM [Ship AutoMation]----------------------- done\nconnecting to ship main system---------------------- done\nlife support---------------------------------------- online\nadvanced diagnostics-------------------------------- online\nsensors suite--------------------------------------- online\nreactor core---------------------------------------- operational\nbooting nav system---------------------------------- done\nAll Systems 100% Begin Operation...";
+	var initText="   SSSSSSSSSSSSSSS                AAA               MMMMMMMM               MMMMMMMM\n SS:::::::::::::::S              A:::A              M:::::::M             M:::::::M\nS:::::SSSSSS::::::S             A:::::A             M::::::::M           M::::::::M\nS:::::S     SSSSSSS            A:::::::A            M:::::::::M         M:::::::::M\nS:::::S                       A:::::::::A           M::::::::::M       M::::::::::M\nS:::::S                      A:::::A:::::A          M:::::::::::M     M:::::::::::M\n S::::SSSS                  A:::::A A:::::A         M:::::::M::::M   M::::M:::::::M\n  SS::::::SSSSS            A:::::A   A:::::A        M::::::M M::::M M::::M M::::::M\n    SSS::::::::SS         A:::::A     A:::::A       M::::::M  M::::M::::M  M::::::M\n       SSSSSS::::S       A:::::AAAAAAAAA:::::A      M::::::M   M:::::::M   M::::::M\n            S:::::S     A:::::::::::::::::::::A     M::::::M    M:::::M    M::::::M\n            S:::::S    A:::::AAAAAAAAAAAAA:::::A    M::::::M     MMMMM     M::::::M\nSSSSSSS     S:::::S   A:::::A             A:::::A   M::::::M               M::::::M\nS::::::SSSSSS:::::S  A:::::A               A:::::A  M::::::M               M::::::M\nS:::::::::::::::SS  A:::::A                 A:::::A M::::::M               M::::::M\n SSSSSSSSSSSSSSS   AAAAAAA                   AAAAAAAMMMMMMMM               MMMMMMMM\n";
+	initText+="\nbooting SAM [Ship AutoMation]----------------------- done\nconnecting to ship main system---------------------- done\nlife support---------------------------------------- online\nadvanced diagnostics-------------------------------- online\nsensors suite--------------------------------------- online\nreactor core---------------------------------------- operational\nbooting nav system---------------------------------- done\nAll Systems 100% Begin Operation...";
     initText+="Hi! I am SAM, the Ship AutoMation system.\n";
     initText+="SAy something funny and wittty that endears this character to the player...";
-    typeWriter("reboot system...");
+    typeWriter("reboot system...",25);
     setTimeout(function () {
-       typeWriter(initText);
+       typeWriter(initText,2);
     }, 5000);
-    
 }
 function handleEvent()
 {
