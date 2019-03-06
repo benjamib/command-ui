@@ -15,14 +15,21 @@ function initGame()
       elem.requestFullscreen();
     }
    */
-	var initText="   SSSSSSSSSSSSSSS                AAA               MMMMMMMM               MMMMMMMM\n SS:::::::::::::::S              A:::A              M:::::::M             M:::::::M\nS:::::SSSSSS::::::S             A:::::A             M::::::::M           M::::::::M\nS:::::S     SSSSSSS            A:::::::A            M:::::::::M         M:::::::::M\nS:::::S                       A:::::::::A           M::::::::::M       M::::::::::M\nS:::::S                      A:::::A:::::A          M:::::::::::M     M:::::::::::M\n S::::SSSS                  A:::::A A:::::A         M:::::::M::::M   M::::M:::::::M\n  SS::::::SSSSS            A:::::A   A:::::A        M::::::M M::::M M::::M M::::::M\n    SSS::::::::SS         A:::::A     A:::::A       M::::::M  M::::M::::M  M::::::M\n       SSSSSS::::S       A:::::AAAAAAAAA:::::A      M::::::M   M:::::::M   M::::::M\n            S:::::S     A:::::::::::::::::::::A     M::::::M    M:::::M    M::::::M\n            S:::::S    A:::::AAAAAAAAAAAAA:::::A    M::::::M     MMMMM     M::::::M\nSSSSSSS     S:::::S   A:::::A             A:::::A   M::::::M               M::::::M\nS::::::SSSSSS:::::S  A:::::A               A:::::A  M::::::M               M::::::M\nS:::::::::::::::SS  A:::::A                 A:::::A M::::::M               M::::::M\n SSSSSSSSSSSSSSS   AAAAAAA                   AAAAAAAMMMMMMMM               MMMMMMMM\n";
-	initText+="\nbooting SAM [Ship AutoMation]----------------------- done\nconnecting to ship main system---------------------- done\nlife support---------------------------------------- online\nadvanced diagnostics-------------------------------- online\nsensors suite--------------------------------------- online\nreactor core---------------------------------------- operational\nbooting nav system---------------------------------- done\nAll Systems 100% Begin Operation...";
+   var initText="";
+
+
+	/*var initText="   SSSSSSSSSSSSSSS                AAA               MMMMMMMM               MMMMMMMM\n SS:::::::::::::::S              A:::A              M:::::::M             M:::::::M\nS:::::SSSSSS::::::S             A:::::A             M::::::::M           M::::::::M\nS:::::S     SSSSSSS            A:::::::A            M:::::::::M         M:::::::::M\nS:::::S                       A:::::::::A           M::::::::::M       M::::::::::M\nS:::::S                      A:::::A:::::A          M:::::::::::M     M:::::::::::M\n S::::SSSS                  A:::::A A:::::A         M:::::::M::::M   M::::M:::::::M\n  SS::::::SSSSS            A:::::A   A:::::A        M::::::M M::::M M::::M M::::::M\n    SSS::::::::SS         A:::::A     A:::::A       M::::::M  M::::M::::M  M::::::M\n       SSSSSS::::S       A:::::AAAAAAAAA:::::A      M::::::M   M:::::::M   M::::::M\n            S:::::S     A:::::::::::::::::::::A     M::::::M    M:::::M    M::::::M\n            S:::::S    A:::::AAAAAAAAAAAAA:::::A    M::::::M     MMMMM     M::::::M\nSSSSSSS     S:::::S   A:::::A             A:::::A   M::::::M               M::::::M\nS::::::SSSSSS:::::S  A:::::A               A:::::A  M::::::M               M::::::M\nS:::::::::::::::SS  A:::::A                 A:::::A M::::::M               M::::::M\n SSSSSSSSSSSSSSS   AAAAAAA                   AAAAAAAMMMMMMMM               MMMMMMMM\n";*/
+	initText+="\nbooting SAM [Ship AutoMation]--------------------- done\nconnecting to ship main system-------------------- done\nlife support-------------------------------------- online\nadvanced diagnostics------------------------------ online\nsensors suite------------------------------------- online\nreactor core-------------------------------------- operational\nbooting nav system-------------------------------- done\nAll Systems @ 100% Begin Operation...";
     initText+="Hi! I am SAM, the Ship AutoMation system.\n";
-    initText+="SAy something funny and wittty that endears this character to the player...";
+    initText+="Say something funny and wittty that endears this character to the player...";
     typeWriter("reboot system...",25);
     setTimeout(function () {
-       typeWriter(initText,2);
-    }, 5000);
+       typeWriter(initText,20);
+    }, 1000);
+    setTimeout(function () {
+       typeWriter(SAM());
+    }, 17000);
+    
 }
 function handleEvent()
 {
@@ -79,8 +86,8 @@ function processCommand(cmd)
             return handleMove(cmdArray[1]);
         case "look":
             return handleLook(cmdArray[1]);
-        /*case "scan":
-            return processScan(cmdArray[1]);*/
+        case "scan":
+            return processScan(cmdArray[1]);
         case "echo":
             return processEcho(cmdArray[1]);
         case "clear":
@@ -98,13 +105,15 @@ function processCommand(cmd)
         case "SAM":
             return SAM();
         case "help":
-            return help();
+            return SAM();
         case "ship":
             return ship();
         case "logs":
             return DisplayLogs();
         case "hello":
             return hello(cmdArray[1]);
+        case "map":
+            return map();
         default:
             return "command '" + cmd +"' is not recognized";
     }

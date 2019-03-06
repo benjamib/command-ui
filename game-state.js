@@ -4,7 +4,7 @@ class GameState{
     this.activeQuests = quests;
     this.gameFlags = flags;
     this.SAM ={
-      "about":"SAM is the shipboard AI, your digital wingman and partner in your adventure. SAM controls all of the shipboard systems through your commands. Type 'help SAM' to see a full list of what SAM can do.",
+      "about":"   _____ ___    __  ___\n  / ___//   |  /  |/  / \n  \\__ \\/ /| | / /|_/ / \n ___/ / ___ |/ /  / /  \n/____/_/  |_/_/  /_/   \n\nSAM Copyright AX1 Inc. 2354\nVersion 0.11\nCommands:\n\tSAM--------- Dispalys the command reference\n\tlook-------- returns details about the area surrounding the ship\n\tlook [dir]-- returns details about the area in the specified direction from the ship\n\tmove [dir]-- moves the ship in the specified direction\n\twhoami------ returns information on the user of the system\n\twhereami---- returns information about the ships current location\n\tlogs-------- returns a list of the ship log entries\n\tread [#]---- reads the specified log\n\thello [str]- establishes communications with [str]\n\tship-------- displays details about the ship",
       "help": "command reference"
     };
     this.ship = {

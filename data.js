@@ -230,12 +230,54 @@ ReadLog = function(index){
   return Logs[index-1].ReadLog();
 };
 
-
-
+map = function(){
+  var ret ="\t    1   2   3   4   5   6   7   8";
+  ret += "\n\t  +---+---+---+---+---+---+---+---+";
+  ret += "\n\t1 |   |   |   |   |   |   |   |   |";
+  ret += "\n\t  +---+---+---+---+---+---+---+---+";
+  ret += "\n\t2 |   |   |   |   |   |   |   |   |";
+  ret += "\n\t  +---+---+---+---+---+---+---+---+";
+  ret += "\n\t3 |   | @ |   |   |   |   |   |   |";
+  ret += "\n\t  +---+---+---+---+---+---+---+---+";
+  ret += "\n\t4 |   |   |   |   |   |   |   |   |";
+  ret += "\n\t  +---+---+---+---+---+---+---+---+";
+  ret += "\n\t5 |   |   |   |   |   |   |   |   |";
+  ret += "\n\t  +---+---+---+---+---+---+---+---+";
+  ret += "\n\t6 |   |   |   |   |   |   |   |   |";
+  ret += "\n\t  +---+---+---+---+---+---+---+---+";
+  ret += "\n\t7 |   |   |   |   |   |   |   |   |";
+  ret += "\n\t  +---+---+---+---+---+---+---+---+";
+  ret += "\n\t8 |   |   |   |   |   |   |   |   |";
+  ret += "\n\t  +---+---+---+---+---+---+---+---+";
+  return ret;
+  
+};
+processScan = function(param){
+  var str =""
+  if(param === undefined){
+    if(gs.currentLocation.objects.length >0){
+      str+="The ship scanners picked up the following objects in the area:\n"
+      for(var it=0;it<gs.currentLocation.objects.length;it++){
+        str+= gs.currentLocation.objects[it].name + "\n";
+      }
+    } else{
+      str+="The ship scanners did not pick up anything of interest in the area"
+    }
+  } else{
+    var found = gs.currentLocation.objects.find(function(element) {
+      if(element.name === param)
+        return element
+    });
+    return found.details;
+  }
+  
+  return str;
+};
 /*Game Data*/
 
 let Station_067 = new SpaceObject("station_067",false);
 Station_067.dialog = StationDialog;
+Station_067.details = "Station Zero Six Seven is a remote station. It houses a few hundred people. The inhabitents are mostly people that want to get away from Aegia, and people in general.";
 let Aegia = new Location("Aegia",5,10);
 let Ferra = new Location("Ferra",5,11);
 let AX1 = new Location("AX1",6,10);
