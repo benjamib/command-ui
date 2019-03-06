@@ -1,5 +1,8 @@
-function typeWriter(textToWrite) {
-
+var speed = 25;
+function typeWriter(textToWrite,spd) {
+	speed= spd;
+	if(spd==undefined)
+		speed=25;
     i=0;
     document.getElementById("demo").innerHTML = "";
     
