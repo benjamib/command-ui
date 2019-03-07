@@ -19,7 +19,7 @@ function type(){
     //document.getElementById("demo").insertAdjacentHTML("beforeend",getRandomColorChar(txt.charAt(i)));
     i++;
     document.getElementById("demo").scrollTop = document.getElementById("demo").scrollHeight;
-    setTimeout(type, speed);
+    //setTimeout(type, speed);
   }
   
 }
