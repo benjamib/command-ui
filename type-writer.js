@@ -12,15 +12,19 @@ function typeWriter(textToWrite,spd) {
     }
 }
 function type(){
-
-  if (i < txt.length)
-  {
-    document.getElementById("demo").innerHTML += txt.charAt(i);
-    //document.getElementById("demo").insertAdjacentHTML("beforeend",getRandomColorChar(txt.charAt(i)));
-    i++;
-    document.getElementById("demo").scrollTop = document.getElementById("demo").scrollHeight;
-    setTimeout(type,speed);
+  var j = 0
+  for(j;j<20;j++){
+	  if (i < txt.length)
+	  {
+		document.getElementById("demo").innerHTML += txt.charAt(i);
+		//document.getElementById("demo").insertAdjacentHTML("beforeend",getRandomColorChar(txt.charAt(i)));
+		i++;
+		document.getElementById("demo").scrollTop = document.getElementById("demo").scrollHeight;
+		
+	  } else break;
   }
+  if (i < txt.length)
+	setTimeout(type,1);
   
 }
 function getRandomInt(max) {
