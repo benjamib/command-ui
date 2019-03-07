@@ -22,13 +22,16 @@ function initGame()
 	initText+="\nbooting SAM [Ship AutoMation]--------------------- done\nconnecting to ship main system-------------------- done\nlife support-------------------------------------- online\nadvanced diagnostics------------------------------ online\nsensors suite------------------------------------- online\nreactor core-------------------------------------- operational\nbooting nav system-------------------------------- done\nAll Systems @ 100% Begin Operation...";
     initText+="Hi! I am SAM, the Ship AutoMation system.\n";
     initText+="Say something funny and wittty that endears this character to the player...";
-    typeWriter("reboot system...",25);
+    typeWriter("rebooting system...",25);
     setTimeout(function () {
-       typeWriter(initText,20);
-    }, 1000);
+       typeWriter(initText,15);
+    }, 1500);
     setTimeout(function () {
        typeWriter(SAM());
     }, 17000);
+    setTimeout(function () {
+       gs.init=true;
+    }, 1);
     
 }
 function handleEvent()
@@ -39,20 +42,18 @@ function processInput()
 {
     var key = event.keyCode;
     var cmd_obj = document.getElementById("command-line");
-    if(key=='13')
+    if(key=='13' && gs.init===true)
     {
         
         
         var cmd = cmd_obj.value;
         if (cmd !== "")
         {
+            typeWriter("root@SAM \n$ " + cmd,15);
+            setTimeout(function () {
+              outputResult(cmd,cmd_obj);
+            }, 1000);
             
-            var txt = processCommand(cmd);
-            typeWriter(txt);
-            cmd_obj.value="";
-            var myEvent = new CustomEvent(cmd.split(" ")[0],{detail:gs.currentLocation.name});
-            // Dispatch the event.
-            document.dispatchEvent(myEvent);
         }
 
     }
@@ -69,6 +70,14 @@ function processInput()
         cmdHistoryIndex=0;
     
 
+}
+function outputResult(cmd,cmd_obj){
+  var ret_text = processCommand(cmd);
+  typeWriter(ret_text);
+  cmd_obj.value="";
+  var myEvent = new CustomEvent(cmd.split(" ")[0],{detail:gs.currentLocation.name});
+  // Dispatch the event.
+  document.dispatchEvent(myEvent);
 }
 function processCommand(cmd)
 {
@@ -114,6 +123,12 @@ function processCommand(cmd)
             return hello(cmdArray[1]);
         case "map":
             return map();
+        case "get":
+            return processGet(cmdArray[1]);
+        case "cargo":
+            return processCargo(cmdArray[1]);
+        case "remove":
+            return processRemove(cmdArray[1]);
         default:
             return "command '" + cmd +"' is not recognized";
     }
