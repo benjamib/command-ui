@@ -24,11 +24,11 @@ function initGame()
     initText+="Say something funny and wittty that endears this character to the player...";
     typeWriter("rebooting system...",25);
     setTimeout(function () {
-       typeWriter(initText,15);
-    }, 1500);
+       typeWriter(initText);
+    }, 1000);
     setTimeout(function () {
        typeWriter(SAM());
-    }, 17000);
+    }, 10000);
     setTimeout(function () {
        gs.init=true;
     }, 1);
