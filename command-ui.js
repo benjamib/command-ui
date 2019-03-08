@@ -112,7 +112,7 @@ function processCommand(cmd)
             return where();
         case "whoami":
             return whoami();
-        case "SAM":
+        case "sam":
             return SAM();
         case "help":
             return SAM();
