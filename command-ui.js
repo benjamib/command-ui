@@ -89,6 +89,7 @@ function processCommand(cmd)
         typeWriter("command '" + cmd +"' is not recognized");
         return;
   }
+    cmdArray[0] = cmdArray[0].toLowerCase();
     switch(cmdArray[0])
     {
         case "move":
