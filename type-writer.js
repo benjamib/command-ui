@@ -2,7 +2,7 @@ var speed = 5;
 function typeWriter(textToWrite,spd) {
 	speed= spd;
 	if(spd===undefined){
-		speed=15;
+		speed=5;
 	}
   i=0;
   if(textToWrite !== null && textToWrite !== undefined){
@@ -11,15 +11,17 @@ function typeWriter(textToWrite,spd) {
   }
 }
 function type(){
-  var j = 0
+  var j = 0;
+  var strOut="";
   for(j;j<speed;j++){
 	  if (i < txt.length)
 	  {
-  		document.getElementById("demo").innerHTML += txt.charAt(i);
+  		strOut+=txt.charAt(i);
   		document.getElementById("demo").scrollTop = document.getElementById("demo").scrollHeight;
   		i++;
 	  } else break;
   }
+  document.getElementById("demo").innerHTML += strOut;
   if (i < txt.length) {
 	  setTimeout(type,1);
   }

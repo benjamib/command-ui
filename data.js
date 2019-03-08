@@ -206,9 +206,15 @@ class Log {
   }
   ReadLog()
   {
+    var str="";
     if(!this.corrupted){
       this.read = true;
-      return "Title: " + this.title + "\nDate: " + this.date + "\n\n" + this.content;
+      for(i=0;i<80;i++)
+        str+="=";
+      str+= "\n\nTitle: " + this.title + "\nDate: " + this.date + "\n\n" + this.content+"\n\n";
+      for(i=0;i<80;i++)
+        str+="=";
+      return str;
     }
     else{
       return "Cannot read contents of this log, the contents are corrupted... ";
@@ -250,7 +256,8 @@ map = function(){
   ret += "\n\t8 |   |   |   |   |   |   |   |   |";
   ret += "\n\t  +---+---+---+---+---+---+---+---+";
   ret = setPosition(ret);
-  return ret;
+  typeWriter(ret,3000);
+  return "";
   
 };
 setPosition = function(ret){
@@ -295,6 +302,13 @@ processGet = function(param){
   if(found.canTake !== true){
     return param + " cannot be taken";
   }
+  var it;
+  for(it=0;it<gs.currentLocation.objects.length;it++){
+    if(gs.currentLocation.objects[it].name === param){
+      gs.currentLocation.objects.splice(it,1);
+      break;
+    }
+  }
   return gs.addCargo(found);
   
 };
@@ -308,7 +322,13 @@ processRemove = function(param){
 
 let Station_067 = new SpaceObject("station_067",false);
 let ShinyRock = new SpaceObject("shiny_rock",true);
+let ShinyRock1 = new SpaceObject("shiny_rock1",true);
+let ShinyRock2 = new SpaceObject("shiny_rock2",true);
+let ShinyRock3 = new SpaceObject("shiny_rock3",true);
 ShinyRock.details = "It is a shiny rock. It does not seem important but you can pick it up if you want...";
+ShinyRock1.details = "It is a shiny rock. It does not seem important but you can pick it up if you want...";
+ShinyRock2.details = "It is a shiny rock. It does not seem important but you can pick it up if you want...";
+ShinyRock3.details = "It is a shiny rock. It does not seem important but you can pick it up if you want...";
 Station_067.dialog = StationDialog;
 Station_067.details = "Station Zero Six Seven is a remote station. It houses a few hundred people. The inhabitents are mostly people that want to get away from Aegia, and people in general.";
 let Aegia = new Location("Aegia",4,4);
@@ -319,6 +339,9 @@ Ferra.look = "It's a moon!";
 Aegia.look = "Aegia, the bustling center of the Aegis system. The planet is flecked with whisps of violet and teal clouds over land of deep green and wheat, and vast oceans of the deepest blue. AX1, a shipyard, is slightly to east of your view, humming with activity. Ferra, the Aegian moon, is just peeking over the horizon of Aegia, stone gray.";
 Aegia.addObject(Station_067);
 Aegia.addObject(ShinyRock);
+Aegia.addObject(ShinyRock1);
+Aegia.addObject(ShinyRock2);
+Aegia.addObject(ShinyRock3);
 Aegia.north = Ferra;
 Aegia.east = AX1;
 let gs = new GameState(Aegia,[],{});

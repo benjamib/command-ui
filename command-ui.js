@@ -52,7 +52,7 @@ function processInput()
             typeWriter("root@SAM \n$ " + cmd,15);
             setTimeout(function () {
               outputResult(cmd,cmd_obj);
-            }, 1000);
+            }, 500);
             
         }
 
