@@ -21,6 +21,10 @@ class GameState{
       "type" : "AX1-C",
       "about": "Your ship is a functional single operator cargo hauler. The design is an AX1-C, a highly modular craft that is configured in the 'C' cargo variant. It is not fancy but does have adequate basic systems and an AI. No one would ever say that it is a sexy ship, perfect for hauling cargo, or making it appear like you are."
     };
+    this.gameObjects = new Map();
+  }
+  addGameObject(name,object){
+    this.gameObjects.set(name,object);
   }
   addCargo(obj){
     if(this.Current_Cargo >= gs.ship.Cargo_Cap){

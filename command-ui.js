@@ -130,6 +130,8 @@ function processCommand(cmd)
             return processCargo(cmdArray[1]);
         case "remove":
             return processRemove(cmdArray[1]);
+        case "about":
+            return processAbout(cmdArray[1]);
         default:
             return "command '" + cmd +"' is not recognized";
     }

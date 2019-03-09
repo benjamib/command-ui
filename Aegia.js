@@ -9,5 +9,7 @@ Aegia.about = "Aegia is a prosperous planet, a trade hub in this corner of the g
 
 Aegia.addObject(ScienceMinistry);
 let gs = new GameState(Aegia,[],{});
+gs.addGameObject(Aegia.name,Aegia);
+gs.addGameObject(ScienceMinistry.name,ScienceMinistry);
 
 

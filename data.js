@@ -1,4 +1,4 @@
-
+  
 function GetAboutSAM(){
   return gs.SAM.about;
 }
@@ -390,4 +390,7 @@ function handleHello(param){
   }
 }
 
+function processAbout(param){
+  return gs.gameObjects.get(param).about;
+}
 
