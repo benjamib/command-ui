@@ -70,6 +70,7 @@ class Location{
       "x":x,
       "y":y,
     };
+    this.about = "" ;
   }
   registerEventHandler(type,func){
     document.addEventListener(type, func, false);
@@ -149,6 +150,7 @@ class SpaceObject{
     this.canTake = canTake;
     this.details = "";
     this.dialog = null;
+    this.about = "";
   }
 }
 function CurrentLocation(){
@@ -331,20 +333,20 @@ ShinyRock2.details = "It is a shiny rock. It does not seem important but you can
 ShinyRock3.details = "It is a shiny rock. It does not seem important but you can pick it up if you want...";
 Station_067.dialog = StationDialog;
 Station_067.details = "Station Zero Six Seven is a remote station. It houses a few hundred people. The inhabitents are mostly people that want to get away from Aegia, and people in general.";
-let Aegia = new Location("Aegia",4,4);
+//let Aegia = new Location("Aegia",4,4);
 let Ferra = new Location("Ferra",4,5);
 let AX1 = new Location("AX1",5,4);
 AX1.look = "It's a shipyard, there are lots of ships...";
 Ferra.look = "It's a moon!";
-Aegia.look = "Aegia, the bustling center of the Aegis system. The planet is flecked with whisps of violet and teal clouds over land of deep green and wheat, and vast oceans of the deepest blue. AX1, a shipyard, is slightly to east of your view, humming with activity. Ferra, the Aegian moon, is just peeking over the horizon of Aegia, stone gray.";
-Aegia.addObject(Station_067);
-Aegia.addObject(ShinyRock);
-Aegia.addObject(ShinyRock1);
-Aegia.addObject(ShinyRock2);
-Aegia.addObject(ShinyRock3);
-Aegia.north = Ferra;
-Aegia.east = AX1;
-let gs = new GameState(Aegia,[],{});
+//Aegia.look = "Aegia, the bustling center of the Aegis system. The planet is flecked with whisps of violet and teal clouds over land of deep green and wheat, and vast oceans of the deepest blue. AX1, a shipyard, is slightly to east of your view, humming with activity. Ferra, the Aegian moon, is just peeking over the horizon of Aegia, stone gray.";
+//Aegia.addObject(Station_067);
+//Aegia.addObject(ShinyRock);
+//Aegia.addObject(ShinyRock1);
+//Aegia.addObject(ShinyRock2);
+//Aegia.addObject(ShinyRock3);
+//Aegia.north = Ferra;
+//Aegia.east = AX1;
+//let gs = new GameState(Aegia,[],{});
 var Logs = [];
 let log1 = new Log("First Entry","1 March 2132");
 Logs.push(log1);
@@ -361,7 +363,7 @@ log5.content = "!!!SAM AUTOMATED MESSAGE!!!\nSystem reboot at 14:54:45.5656\n\nE
 Logs.push(log5);
 
 
-Ferra.registerEventHandler('move',triggerMoveToFerra);
+/*Ferra.registerEventHandler('move',triggerMoveToFerra);
 Aegia.registerEventHandler('move',triggerMoveToAegia);
 function triggerMoveToFerra(e)
 {
@@ -372,7 +374,7 @@ function triggerMoveToAegia(e)
 {
   if(e.detail ==="Aegia")
     typeWriter("this was triggered by moving into the " + e.detail + " location");
-}
+}*/
 function handleHello(param){
   if(param === undefined){
     return "can't establish connection to " + param;
@@ -380,7 +382,7 @@ function handleHello(param){
   let obj = gs.currentLocation.objects.find(function(e){ return e.name === param;});
   if(obj !== undefined){
     currentDialogMap = obj.dialog;
-    process("station_1");
+    process("SM_1");
     return "Establishing comm link...\nConnected..."
   }
   else{

@@ -105,17 +105,13 @@ function process(tag){
   }
   if(node !== null && node!== undefined)
   {
-      
+      if(node.onProcess !== undefined)
+        node.onProcess();
       var content = document.querySelector('#content');
       content.innerHTML = node.content;
       var it = "";
       var btn = document.querySelector('.btn-group');
       btn.innerHTML = "";
-      /*if(node.choices[0]() === ""){
-          btn.innerHTML = btn.innerHTML + "<button id='"+0+"' onclick='closeDialog()'>Close</button>";
-          return;
-      }*/
-     
       
       for(it=0;it<node.choices.length;it++){
         var choice = node.choices[it]();
