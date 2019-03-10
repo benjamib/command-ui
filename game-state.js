@@ -24,7 +24,7 @@ class GameState{
     this.gameObjects = new Map();
   }
   addGameObject(name,object){
-    this.gameObjects.set(name,object);
+    this.gameObjects.set(name.toLowerCase(),object);
   }
   addCargo(obj){
     if(this.Current_Cargo >= gs.ship.Cargo_Cap){
@@ -41,7 +41,7 @@ class GameState{
     }
     else{
       var found = gs.ship.cargo.find(function(element) {
-        if(element.name === obj){
+        if(element.name.toLowerCase() === obj){
           return element
         }
       });
@@ -79,7 +79,7 @@ class GameState{
     }
     else{
       var found = gs.ship.cargo.find(function(element) {
-        if(element.name === obj){
+        if(element.name.toLowerCase() === obj){
           return element
         }
       });
@@ -88,7 +88,7 @@ class GameState{
       } else {
         var it;
         for(it=0;it<this.ship.cargo.length;it++){
-          if(this.ship.cargo[it].name === obj){
+          if(this.ship.cargo[it].name.toLowerCase() === obj){
             this.ship.cargo.splice(it,1);
             return obj + " removed from the cargo";
           }

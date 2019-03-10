@@ -4,6 +4,8 @@ ScienceMinistry.details = "The Science Ministry is located on Aeigia and has an 
 
 ScienceMinistry.about = "The Science Ministry is one of the three ministries that governs Aegia. It controls all scientific endeavors undertaken by the planet. Most Aegians trust the work done by the Sceince Ministry though concerns have begun to arise over it's most ambitious project The Gate.";
 
+ScienceMinistry.initialDialog = "SM_1";
+
 let ScienceMinistry_1 = {
   tag:"SM_1",
   content:"This is Sidhartha hailing on the public channel anyone copy?",
@@ -25,6 +27,9 @@ function SM_2_1(){
 }
 
 function SM_2_2(){
+  if(gs.gameFlags.ANTIG !== true){
+    return null;
+  }
   return {option:"Trouble with Anti-G",next:null};//add in ANTI-G quest node if started
 }
 
@@ -47,7 +52,7 @@ function SM_News_Research(){
 
 let SM_Gate = {
   tag:"SM_Gate",
-  content:"BlahBlahBlah",
+  content:"The Gate is close to completion. The day it comes online will be a great day in the history of Aegia. Imagine the possibilities of near instantaneous travel to almost anywhere in the galaxy? I heard that there is a certain group out in Station Zero Six Seven that keep spreading lies about the danger of the technology behind The Gate poses, utter rubbish. ",
   choices:[function(){return{option:"End",next:null};}]//add in the real option soon
 };
 
@@ -62,7 +67,8 @@ function RS_1_1(){
 
 let RS_2 = {
   tag:"RS_2",
-  onProcess: function setArchimedes(){ gs.gameFlags.archimedes=true},
+  content:"Thanks! The Science Ministry will be greatful for your service",
+  onProcess: function(){ gs.gameFlags.archimedes=true},
   choices:[SM_2_1,SM_END]
 };
 

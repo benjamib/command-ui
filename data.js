@@ -150,6 +150,7 @@ class SpaceObject{
     this.canTake = canTake;
     this.details = "";
     this.dialog = null;
+    this.initialDialog = "";
     this.about = "";
   }
 }
@@ -282,7 +283,7 @@ processScan = function(param){
     }
   } else{
     var found = gs.currentLocation.objects.find(function(element) {
-      if(element.name === param)
+      if(element.name.toLowerCase() === param)
         return element
     });
     return found.details;
@@ -295,7 +296,7 @@ processGet = function(param){
     return "I cannot pick up "+ param;
   }
   var found = gs.currentLocation.objects.find(function(element) {
-    if(element.name === param){
+    if(element.name.toLowerCase() === param){
       return element
     }});
   if(found === undefined){
@@ -306,7 +307,7 @@ processGet = function(param){
   }
   var it;
   for(it=0;it<gs.currentLocation.objects.length;it++){
-    if(gs.currentLocation.objects[it].name === param){
+    if(gs.currentLocation.objects[it].name.toLowerCase() === param){
       gs.currentLocation.objects.splice(it,1);
       break;
     }
@@ -323,14 +324,6 @@ processRemove = function(param){
 /*Game Data*/
 
 let Station_067 = new SpaceObject("station_067",false);
-let ShinyRock = new SpaceObject("shiny_rock",true);
-let ShinyRock1 = new SpaceObject("shiny_rock1",true);
-let ShinyRock2 = new SpaceObject("shiny_rock2",true);
-let ShinyRock3 = new SpaceObject("shiny_rock3",true);
-ShinyRock.details = "It is a shiny rock. It does not seem important but you can pick it up if you want...";
-ShinyRock1.details = "It is a shiny rock. It does not seem important but you can pick it up if you want...";
-ShinyRock2.details = "It is a shiny rock. It does not seem important but you can pick it up if you want...";
-ShinyRock3.details = "It is a shiny rock. It does not seem important but you can pick it up if you want...";
 Station_067.dialog = StationDialog;
 Station_067.details = "Station Zero Six Seven is a remote station. It houses a few hundred people. The inhabitents are mostly people that want to get away from Aegia, and people in general.";
 //let Aegia = new Location("Aegia",4,4);
@@ -379,10 +372,12 @@ function handleHello(param){
   if(param === undefined){
     return "can't establish connection to " + param;
   }
-  let obj = gs.currentLocation.objects.find(function(e){ return e.name === param;});
+  let obj = gs.currentLocation.objects.find(function(e){ return e.name.toLowerCase() === param;});
   if(obj !== undefined){
+    var snd = new Audio("../SAM/generic_sounds/comms.wav"); // buffers automatically when created
+    snd.play();
     currentDialogMap = obj.dialog;
-    process("SM_1");
+    process(obj.initialDialog);
     return "Establishing comm link...\nConnected..."
   }
   else{
@@ -391,6 +386,13 @@ function handleHello(param){
 }
 
 function processAbout(param){
+  if(param === undefined){
+    return "You need to specify what you want to know about...";
+  }
+  var obj = gs.gameObjects.get(param);
+  if(obj === undefined || obj ===null){
+    return "I do not knaow about "+ param;
+  }
   return gs.gameObjects.get(param).about;
 }
 

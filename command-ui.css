@@ -250,7 +250,7 @@ body{
   box-shadow: none;
   padding: 0;
   letter-spacing: .1em;
-    font-size: 24px;
+    font-size: 32px;
     -webkit-font-smoothing: none;
     line-height: 1.2;
 
@@ -258,6 +258,7 @@ body{
 	animation-duration: 800ms;
 	animation-iteration-count: 6;
 	opacity: 0;
+	margin: 0px auto;
 }
 .btn-group{
   margin-top: 16px;

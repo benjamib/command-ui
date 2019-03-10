@@ -2,9 +2,7 @@ var i = 0;
 var txt = '';
 var cmdHistory=[];
 var cmdHistoryIndex=0;
-/*var loc = Loc_Sector_1;
-var lsArr = new Map();
-*/
+
 
 document.addEventListener("mouseup", handleEvent);
 window.addEventListener("load", initGame);
@@ -15,23 +13,30 @@ function initGame()
       elem.requestFullscreen();
     }
    */
-   var initText="";
-
-
-	/*var initText="   SSSSSSSSSSSSSSS                AAA               MMMMMMMM               MMMMMMMM\n SS:::::::::::::::S              A:::A              M:::::::M             M:::::::M\nS:::::SSSSSS::::::S             A:::::A             M::::::::M           M::::::::M\nS:::::S     SSSSSSS            A:::::::A            M:::::::::M         M:::::::::M\nS:::::S                       A:::::::::A           M::::::::::M       M::::::::::M\nS:::::S                      A:::::A:::::A          M:::::::::::M     M:::::::::::M\n S::::SSSS                  A:::::A A:::::A         M:::::::M::::M   M::::M:::::::M\n  SS::::::SSSSS            A:::::A   A:::::A        M::::::M M::::M M::::M M::::::M\n    SSS::::::::SS         A:::::A     A:::::A       M::::::M  M::::M::::M  M::::::M\n       SSSSSS::::S       A:::::AAAAAAAAA:::::A      M::::::M   M:::::::M   M::::::M\n            S:::::S     A:::::::::::::::::::::A     M::::::M    M:::::M    M::::::M\n            S:::::S    A:::::AAAAAAAAAAAAA:::::A    M::::::M     MMMMM     M::::::M\nSSSSSSS     S:::::S   A:::::A             A:::::A   M::::::M               M::::::M\nS::::::SSSSSS:::::S  A:::::A               A:::::A  M::::::M               M::::::M\nS:::::::::::::::SS  A:::::A                 A:::::A M::::::M               M::::::M\n SSSSSSSSSSSSSSS   AAAAAAA                   AAAAAAAMMMMMMMM               MMMMMMMM\n";*/
-	initText+="\nbooting SAM [Ship AutoMation]--------------------- done\nconnecting to ship main system-------------------- done\nlife support-------------------------------------- online\nadvanced diagnostics------------------------------ online\nsensors suite------------------------------------- online\nreactor core-------------------------------------- operational\nbooting nav system-------------------------------- done\nAll Systems @ 100% Begin Operation...";
-    initText+="Hi! I am SAM, the Ship AutoMation system.\n";
-    initText+="Say something funny and wittty that endears this character to the player...";
-    typeWriter("rebooting system...",25);
-    setTimeout(function () {
-       typeWriter(initText);
-    }, 1000);
-    setTimeout(function () {
-       typeWriter(SAM());
-    }, 10000);
-    setTimeout(function () {
-       gs.init=true;
-    }, 1);
+  var snd = new Audio("../SAM/generic_sounds/acid5.wav"); // buffers automatically when created
+  snd.play();
+  var initText="";
+	/*initText+="\nbooting SAM [Ship AutoMation]--------------------- done\nconnecting to ship main system-------------------- done\nlife support-------------------------------------- online\nadvanced diagnostics------------------------------ online\nsensors suite------------------------------------- online\nreactor core-------------------------------------- operational\nbooting nav system-------------------------------- done\nAll Systems @ 100% Begin Operation...";
+  initText+="Hi! I am SAM, the Ship AutoMation system.\n";
+  initText+="Say something funny and wittty that endears this character to the player...";*/
+  typeWriter("rebooting system...",25);
+  /*setTimeout(function () {
+     typeWriter(initText);
+  }, 1000);*/
+  setTimeout(function () {
+    var dlg = document.getElementById("error")
+    if(dlg.open){
+      dlg.close();
+    }
+    snd = new Audio("../SAM/generic_sounds/flagreturn.wav"); // buffers automatically when created
+    snd.play();
+    typeWriter(SAM());
+  }, 2500);
+  setTimeout(function () {
+     gs.init=true;
+     snd = new Audio("../SAM/generic_sounds/start_theme.ogg"); // buffers automatically when created
+     snd.play();
+  }, 1);
     
 }
 function handleEvent()
@@ -45,7 +50,8 @@ function processInput()
     if(key=='13' && gs.init===true)
     {
         
-        
+        snd = new Audio("../SAM/generic_sounds/itempick1.wav"); // buffers automatically when created
+        snd.play();
         var cmd = cmd_obj.value;
         if (cmd !== "")
         {
@@ -90,6 +96,9 @@ function processCommand(cmd)
         return;
   }
     cmdArray[0] = cmdArray[0].toLowerCase();
+    if(cmdArray[1] !== undefined){
+      cmdArray[1] = cmdArray[1].toLowerCase();
+    }
     switch(cmdArray[0])
     {
         case "move":
@@ -135,24 +144,6 @@ function processCommand(cmd)
         default:
             return "command '" + cmd +"' is not recognized";
     }
-}
-function processCommandServer(cmd)
-{
-  cmdHistory.push(cmd);
-  cmdHistoryIndex=0;
-  cmd = cmd.toLowerCase();
-  var cmdArray =  cmd.split(" ");
-  if (cmdArray === null || cmdArray.length > 2)
-  {
-        typeWriter("command '" + cmd +"' is not recognized");
-        return;
-  }
-  var url = '/'+ cmdArray[0] +'?param=' + cmdArray[1];
-  fetch(url).then(function(response) {
-    response.text().then(function(text) {
-      typeWriter(JSON.parse(text));
-	  });
-  });
 }
 function handleLook(direction)
 {

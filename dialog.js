@@ -115,7 +115,8 @@ function process(tag){
       
       for(it=0;it<node.choices.length;it++){
         var choice = node.choices[it]();
-        btn.innerHTML = btn.innerHTML + "<button id='"+it+"' onclick='process(&quot;"+choice.next+"&quot;)'>" + choice.option + "</button>";
+        if(choice !== null)
+          btn.innerHTML = btn.innerHTML + "<button id='"+it+"' onclick='process(&quot;"+choice.next+"&quot;)'>" + choice.option + "</button>";
       }
   } else {
     closeDialog();
