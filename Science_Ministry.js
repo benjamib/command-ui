@@ -18,8 +18,8 @@ function SM_1_1(){
 
 let ScienceMinistry_2 = {
   tag:"SM_2",
-  content:"Copy Sidhartha, this is vice minister Chadli, what can I do for you?",
-  choices:[SM_2_1,SM_2_2]
+  content:"Copy Sidhartha, this is Vice Minister Chadli, what can I do for you?",
+  choices:[SM_2_1,SM_2_2,SM_END]
 };
 
 function SM_2_1(){
@@ -37,7 +37,7 @@ function SM_2_2(){
 let SM_News = {
   tag:"SM_News",
   content:"Everything is revolving around The Gate these days, though there was some talk about a research ship that uncovered something new.",
-  choices:[SM_News_Gate,SM_News_Research]
+  choices:[SM_News_Gate,SM_News_Research,SM_END]
 };
 
 function SM_News_Gate(){
@@ -47,19 +47,19 @@ function SM_News_Research(){
   if(gs.gameFlags.archimedes !== true)
     return {option:"Research Ship",next:"RS_1"};
   else
-    return {option:"End",next:null};
+    return null;
 }
 
 let SM_Gate = {
   tag:"SM_Gate",
   content:"The Gate is close to completion. The day it comes online will be a great day in the history of Aegia. Imagine the possibilities of near instantaneous travel to almost anywhere in the galaxy? I heard that there is a certain group out in Station Zero Six Seven that keep spreading lies about the danger of the technology behind The Gate poses, utter rubbish. ",
-  choices:[function(){return{option:"End",next:null};}]//add in the real option soon
+  choices:[SM_News_Research,SM_END]//add in the real option soon
 };
 
 let RS_1 = {
   tag:"RS_1",
   content:"The reasearch ship Archimedes was running some quantum phase experiements out in sector ??? and has reported an anomoly. For some reason they have been unable to send data back so we are not sure what they uncovered. Right now all the ministry ships are tied up working on the gate so we have no way of reaching them at the moment. Could you head out there and take a look and report back the findings?",
-  choices:[RS_1_1,SM_2_1]
+  choices:[RS_1_1,SM_2_1,SM_END]
 };
 function RS_1_1(){
   return {option:"Sure, I can go check it out",next:"RS_2"};

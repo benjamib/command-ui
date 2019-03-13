@@ -17,6 +17,9 @@ body{
     background-color: black;
   /*height: 100vh;*/
 }
+::-webkit-scrollbar {
+  width: 0px;
+}
 .command {
   background-color: transparent;
   color:rgb(50,255,0);
@@ -291,7 +294,10 @@ dialog{
     line-height: 1.2;
     background-color: black;
     width:50%;
-	max-width:500px;
+	  max-width:500px;
+	  position: fixed;
+    top: 10%;
+    left: 0%;
 	
 }
 
