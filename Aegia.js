@@ -7,9 +7,9 @@ Aegia.about = "Aegia is a prosperous planet, a trade hub in this corner of the g
 
 let Aegia_Obj = new SpaceObject("News_Feed",false);
 
-Aegia_Obj.details = "Aegia Public News Feed"
+Aegia_Obj.details = "Aegia Public News Feed";
 
-Aegia_Obj.about = "Public news feed from the Aegia press corps. Contains the latet new on Aegia and the rest of the Aegis system."
+Aegia_Obj.about = "Public news feed from the Aegia press corps. Contains the latet new on Aegia and the rest of the Aegis system.";
 
 Aegia_Obj.initialDialog = "AEGIA_FEED";
 
