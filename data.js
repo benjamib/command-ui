@@ -374,7 +374,7 @@ function handleHello(param){
   }
   let obj = gs.currentLocation.objects.find(function(e){ return e.name.toLowerCase() === param;});
   if(obj !== undefined){
-    var snd = new Audio("../SAM/generic_sounds/comms.wav"); // buffers automatically when created
+    var snd = new Audio("generic_sounds/comms.wav"); // buffers automatically when created
     snd.play();
     currentDialogMap = obj.dialog;
     process(obj.initialDialog);

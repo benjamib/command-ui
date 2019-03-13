@@ -13,7 +13,7 @@ function initGame()
       elem.requestFullscreen();
     }
    */
-  var snd = new Audio("../SAM/generic_sounds/acid5.wav"); // buffers automatically when created
+  var snd = new Audio("generic_sounds/acid5.wav"); // buffers automatically when created
   snd.play();
   var initText="";
 	/*initText+="\nbooting SAM [Ship AutoMation]--------------------- done\nconnecting to ship main system-------------------- done\nlife support-------------------------------------- online\nadvanced diagnostics------------------------------ online\nsensors suite------------------------------------- online\nreactor core-------------------------------------- operational\nbooting nav system-------------------------------- done\nAll Systems @ 100% Begin Operation...";
@@ -28,13 +28,13 @@ function initGame()
     if(dlg.open){
       dlg.close();
     }
-    snd = new Audio("../SAM/generic_sounds/flagreturn.wav"); // buffers automatically when created
+    snd = new Audio("generic_sounds/flagreturn.wav"); // buffers automatically when created
     snd.play();
     typeWriter(SAM());
   }, 2500);
   setTimeout(function () {
      gs.init=true;
-     snd = new Audio("../SAM/generic_sounds/start_theme.ogg"); // buffers automatically when created
+     snd = new Audio("generic_sounds/start_theme.ogg"); // buffers automatically when created
      snd.play();
   }, 1);
     
@@ -50,7 +50,7 @@ function processInput()
     if(key=='13' && gs.init===true)
     {
         
-        snd = new Audio("../SAM/generic_sounds/itempick1.wav"); // buffers automatically when created
+        snd = new Audio("generic_sounds/itempick1.wav"); // buffers automatically when created
         snd.play();
         var cmd = cmd_obj.value;
         if (cmd !== "")
