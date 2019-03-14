@@ -269,6 +269,8 @@ setPosition = function(ret){
 };
 processScan = function(param){
   var str =""
+  var snd = new Audio("generic_sounds/water/magnet_start.wav"); // buffers automatically when created
+  snd.play();
   if(param === undefined){
     if(gs.currentLocation.objects.length >0){
       str+="The ship scanners picked up the following objects in the area:\n"

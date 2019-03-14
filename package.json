@@ -1,0 +1,20 @@
+{
+  "name": "sam",
+  "version": "1.0.0",
+  "description": "text based space adventure",
+  "main": "command-ui.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjamib/command-ui.git"
+  },
+  "author": "Ben Brewster",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benjamib/command-ui/issues"
+  },
+  "homepage": "https://github.com/benjamib/command-ui#readme",
+  "dependencies": {}
+}
