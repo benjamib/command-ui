@@ -237,8 +237,8 @@ body{
   pointer-events: none;
 }
 .crt {
-  animation: textShadow 4.6s infinite;
-  /*text-shadow: 0 0 10px #C8C8C8;*/
+  /*animation: textShadow 4.6s infinite;*/
+  text-shadow: 0 0 10px #C8C8C8;
 }
 .error {
   background-color: transparent;

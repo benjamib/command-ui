@@ -1,4 +1,4 @@
-let ScienceMinistry = new SpaceObject("Science_Ministry",false);
+let ScienceMinistry = new SpaceObject("Science Ministry",false);
 
 ScienceMinistry.details = "The Science Ministry is located on Aeigia and has an open communication channel.";
 
@@ -44,8 +44,9 @@ function SM_News_Gate(){
   return {option:"The Gate",next:"SM_Gate"};
 }
 function SM_News_Research(){
-  if(gs.gameFlags.archimedes !== true)
+  if(gs.gameFlags.archimedes !== true){
     return {option:"Research Ship",next:"RS_1"};
+  }
   else
     return null;
 }
@@ -68,7 +69,7 @@ function RS_1_1(){
 let RS_2 = {
   tag:"RS_2",
   content:"Thanks! The Science Ministry will be greatful for your service",
-  onProcess: function(){ gs.gameFlags.archimedes=true},
+  onProcess: function(){ gs.gameFlags.archimedes=true;gs.activeQuests.push(CollectResearch);},
   choices:[SM_2_1,SM_END]
 };
 
@@ -86,3 +87,18 @@ addNode(RS_1,ScienceMinistry_Dialog);
 addNode(RS_2,ScienceMinistry_Dialog);
 
 ScienceMinistry.dialog = ScienceMinistry_Dialog;
+
+let Research_1 = new objective(1);
+Research_1.content = "TRavel to sector XXX and collect the data on the anomoly from Archemidis";
+let Research_2 = new objective(2);
+Research_2.content = "Return data from Archemidis to the Science Ministry";
+let CollectResearch = new Quest();
+CollectResearch.name = "The Archemidis";
+CollectResearch.description = "After talking to Vice Minister Chadli at the Science Ministry, I agreed to Collect informaiton from the research ship archemidis and return it to the Science Ministry on Aegia";
+
+CollectResearch.objectives.set(Research_1.id,Research_1);
+CollectResearch.objectives.set(Research_2.id,Research_2);
+
+CollectResearch.currentObjective = Research_1;
+
+

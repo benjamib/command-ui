@@ -128,5 +128,6 @@ function closeDialog(){
     dlg.close();
   }
   typeWriter("Comms channel disconnected...");
+  document.getElementById("command-line").focus();
   return;
 }

@@ -44,7 +44,7 @@ let ActiveQuests = [];
 ActiveQuests.push(ExploreRendevous);
 
 GetActiveQuests = function (){
-  return ActiveQuests;
+  return gs.activeQuests;
 };
 
 class Location{
@@ -71,9 +71,6 @@ class Location{
       "y":y,
     };
     this.about = "" ;
-  }
-  registerEventHandler(type,func){
-    document.addEventListener(type, func, false);
   }
   
   get look(){
@@ -192,7 +189,7 @@ GetLocation = function(){
 GetWhoami = function(){
   var str="";
   str += "Name: Cmdr. Scout Jones";
-  str += "\nOccupation: Silent Service Pilot";
+  str += "\nOccupation: Service Ministry Pilot";
   str += "\nAge: 29";
   str += "\nBio: Flying ships since they were 19. Joined the Corps at 21. Fought in the Chronis Uprising with distinguished service.";
   str += "\nCurrent Mission: Unknown";
@@ -286,7 +283,11 @@ processScan = function(param){
       if(element.name.toLowerCase() === param)
         return element
     });
-    return found.details;
+    if(found !== undefined) {
+      return found.details;
+    } else {
+      return "There is no '"+param+ "' to scan in this area"
+    }
   }
   
   return str;
@@ -355,19 +356,6 @@ let log5 = new Log("Critical System Error","5 March 2132");
 log5.content = "!!!SAM AUTOMATED MESSAGE!!!\nSystem reboot at 14:54:45.5656\n\nError Code: 34 - Power System Failure\nEnergy spike detected with external sensors. Signal indicates a high energy event. Power was diverted to life support systems.";
 Logs.push(log5);
 
-
-/*Ferra.registerEventHandler('move',triggerMoveToFerra);
-Aegia.registerEventHandler('move',triggerMoveToAegia);
-function triggerMoveToFerra(e)
-{
-  if(e.detail ==="Ferra")
-    typeWriter("this was triggered by moving into the ferra location");
-}
-function triggerMoveToAegia(e)
-{
-  if(e.detail ==="Aegia")
-    typeWriter("this was triggered by moving into the " + e.detail + " location");
-}*/
 function handleHello(param){
   if(param === undefined){
     return "can't establish connection to " + param;
@@ -391,8 +379,32 @@ function processAbout(param){
   }
   var obj = gs.gameObjects.get(param);
   if(obj === undefined || obj ===null){
-    return "I do not knaow about "+ param;
+    return "I do not knaow about '"+ param+"'";
   }
   return gs.gameObjects.get(param).about;
 }
-
+function handleTodo(param){
+  var i=0;
+  var str="";
+  if(param===undefined){
+    str="TODO:\n\n";
+    for(i=0;i<gs.activeQuests.length;i++){
+      str +="------------------------------------------------------\n";
+      str +=gs.activeQuests[i].name+"\n\n";
+      str +=gs.activeQuests[i].description+"\n";
+      str +="------------------------------------------------------\n";
+    }
+  } else {
+    var found = gs.activeQuests.find(function(element) {
+        if(element.name.toLowerCase() === param){
+          return element
+        }
+      });
+      if(found === undefined){
+        return "Todo "+ param + " does not exist";
+      } else {
+        str = found.currentObjective.content;
+      }
+  }
+  return str;
+}
