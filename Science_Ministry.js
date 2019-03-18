@@ -69,7 +69,7 @@ function RS_1_1(){
 let RS_2 = {
   tag:"RS_2",
   content:"Thanks! The Science Ministry will be greatful for your service",
-  onProcess: function(){ gs.gameFlags.archimedes=true;gs.activeQuests.push(CollectResearch);},
+  onProcess: function(){ gs.gameFlags.archimedes=true;gs.activeQuests.push(CollectResearch);typeWriter("New quest added...(TODO for more details)")},
   choices:[SM_2_1,SM_END]
 };
 

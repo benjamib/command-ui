@@ -203,6 +203,7 @@ class Log {
     this.read = false;
     if(corrupted === null) corrupted = false;
     this.corrupted = corrupted;
+    this.OnRead = null;
   }
   ReadLog()
   {
@@ -214,9 +215,15 @@ class Log {
       str+= "\n\nTitle: " + this.title + "\nDate: " + this.date + "\n\n" + this.content+"\n\n";
       for(i=0;i<80;i++)
         str+="=";
+      if(this.OnRead !== null){
+        this.OnRead();
+      }
       return str;
     }
     else{
+      if(this.OnRead !== null){
+        this.OnRead();
+      }
       return "Cannot read contents of this log, the contents are corrupted... ";
     }
   }
@@ -326,23 +333,19 @@ processRemove = function(param){
 };
 /*Game Data*/
 
+let LostOrdersQst = new Quest();
+LostOrdersQst.name = "Lost Orders";
+LostOrdersQst.description = "I need to figure out what I was up to before I blacked out.";
+let LostOrdersQst_1 = new objective(1);
+LostOrdersQst.content = "I should check in with the Service Ministry to see what is going on.";
+LostOrdersQst.objectives.set(LostOrdersQst_1.id,LostOrdersQst_1);
+LostOrdersQst.currentObjective = LostOrdersQst_1;
+
+
 let Station_067 = new SpaceObject("station_067",false);
 Station_067.dialog = StationDialog;
 Station_067.details = "Station Zero Six Seven is a remote station. It houses a few hundred people. The inhabitents are mostly people that want to get away from Aegia, and people in general.";
-//let Aegia = new Location("Aegia",4,4);
-//let Ferra = new Location("Ferra",4,5);
-//let AX1 = new Location("AX1",5,4);
-//AX1.look = "It's a shipyard, there are lots of ships...";
-//Ferra.look = "It's a moon!";
-//Aegia.look = "Aegia, the bustling center of the Aegis system. The planet is flecked with whisps of violet and teal clouds over land of deep green and wheat, and vast oceans of the deepest blue. AX1, a shipyard, is slightly to east of your view, humming with activity. Ferra, the Aegian moon, is just peeking over the horizon of Aegia, stone gray.";
-//Aegia.addObject(Station_067);
-//Aegia.addObject(ShinyRock);
-//Aegia.addObject(ShinyRock1);
-//Aegia.addObject(ShinyRock2);
-//Aegia.addObject(ShinyRock3);
-//Aegia.north = Ferra;
-//Aegia.east = AX1;
-//let gs = new GameState(Aegia,[],{});
+
 var Logs = [];
 let log1 = new Log("First Entry","1 March 2132");
 Logs.push(log1);
@@ -351,6 +354,11 @@ let log2 = new Log("Cargo Manifest","1 March 2132");
 Logs.push(log2);
 log2.content = "Remote Detonators qty: 5\nCX85 Mining Charge qty: 5\nV.2 Delivery Drones qty: 5\n\nCERTIFIED AX1 CARGO AGENT 634ATY";
 let log3 = new Log("Orders","2 March 2132",true);
+log3.OnRead = function() {
+  gs.gameFlags.lostorders = true;
+  gs.activeQuests.push(LostOrders);
+  typeWriter("New quest added...(TODO for more details)");
+};
 Logs.push(log3);
 let log4 = new Log("@#$G $%^","@#$@GHF", true);
 Logs.push(log4);
