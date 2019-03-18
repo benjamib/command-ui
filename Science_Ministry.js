@@ -59,7 +59,7 @@ let SM_Gate = {
 
 let RS_1 = {
   tag:"RS_1",
-  content:"The reasearch ship Archimedes was running some quantum phase experiements out in sector ??? and has reported an anomoly. For some reason they have been unable to send data back so we are not sure what they uncovered. Right now all the ministry ships are tied up working on the gate so we have no way of reaching them at the moment. Could you head out there and take a look and report back the findings?",
+  content:"The reasearch ship Archimedes was running some quantum phase experiements out in sector (3,7) and has reported an anomoly. For some reason they have been unable to send data back so we are not sure what they uncovered. Right now all the ministry ships are tied up working on the gate so we have no way of reaching them at the moment. Could you head out there and take a look and report back the findings?",
   choices:[RS_1_1,SM_2_1,SM_END]
 };
 function RS_1_1(){
@@ -89,12 +89,12 @@ addNode(RS_2,ScienceMinistry_Dialog);
 ScienceMinistry.dialog = ScienceMinistry_Dialog;
 
 let Research_1 = new objective(1);
-Research_1.content = "TRavel to sector XXX and collect the data on the anomoly from Archemidis";
+Research_1.content = "Travel to sector (3,7) and collect the data on the anomoly from Archimedes";
 let Research_2 = new objective(2);
-Research_2.content = "Return data from Archemidis to the Science Ministry";
+Research_2.content = "Return data from Archimedes to the Science Ministry";
 let CollectResearch = new Quest();
-CollectResearch.name = "The Archemidis";
-CollectResearch.description = "After talking to Vice Minister Chadli at the Science Ministry, I agreed to Collect informaiton from the research ship archemidis and return it to the Science Ministry on Aegia";
+CollectResearch.name = "The Archimedes";
+CollectResearch.description = "After talking to Vice Minister Chadli at the Science Ministry, I agreed to Collect informaiton from the research ship Archimedes and return it to the Science Ministry on Aegia";
 
 CollectResearch.objectives.set(Research_1.id,Research_1);
 CollectResearch.objectives.set(Research_2.id,Research_2);

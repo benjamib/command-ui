@@ -37,4 +37,7 @@ let gs = new GameState(Aegia,ActiveQuests,{});
 gs.addGameObject(Aegia.name,Aegia);
 gs.addGameObject(ScienceMinistry.name,ScienceMinistry);
 gs.addGameObject(Aegia_Obj.name,Aegia_Obj);
-
+gs.addGameObject(Ferra.name,Ferra);
+gs.addGameObject(ServiceMinistry.name,ServiceMinistry);
+Ferra.addObject(ServiceMinistry);
+Aegia.north = Ferra;
