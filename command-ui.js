@@ -2,7 +2,9 @@ var i = 0;
 var txt = '';
 var cmdHistory=[];
 var cmdHistoryIndex=0;
-
+var music = null;
+var musicIndex=Math.floor(Math.random() * Math.floor(6));
+var musicArr=["generic_sounds/music/start_theme.ogg","generic_sounds/music/Szymon Matuszewski - Space Chase.mp3","generic_sounds/music/Blue Space v0_8.mp3","generic_sounds/music/ville_seppanen-1_g.mp3","generic_sounds/music/Szymon Matuszewski - Space walk.mp3","generic_sounds/music/8-bit space.wav","generic_sounds/music/Szymon Matuszewski - Space Forest.mp3"];
 
 document.addEventListener("mouseup", handleEvent);
 window.addEventListener("load", initGame);
@@ -28,12 +30,21 @@ function initGame()
     typeWriter(SAM());
   }, 2500);
   setTimeout(function () {
-     gs.init=true;
-     snd = new Audio("generic_sounds/start_theme.ogg"); // buffers automatically when created
-     snd.play();
+    gs.init=true;
+    music = new Audio(musicArr[musicIndex]); // buffers automatically when created
+    music.play();
+    music.addEventListener('ended',function(){
+      musicIndex = musicIndex+1;
+      musicIndex = musicIndex%7;
+      music.src = musicArr[musicIndex];
+      music.pause();
+      music.load();
+      music.play();
+    });
   }, 1);
     
 }
+
 function handleEvent()
 {
     document.getElementById("command-line").focus();

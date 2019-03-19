@@ -33,11 +33,14 @@ addNode(AEGIA_FEED2,Aegia_Dialog);
 Aegia_Obj.dialog = Aegia_Dialog;
 Aegia.addObject(Aegia_Obj);
 Aegia.addObject(ScienceMinistry);
-let gs = new GameState(Aegia,ActiveQuests,{});
+let gs = new GameState(Aegia,[],{});
 gs.addGameObject(Aegia.name,Aegia);
 gs.addGameObject(ScienceMinistry.name,ScienceMinistry);
 gs.addGameObject(Aegia_Obj.name,Aegia_Obj);
 gs.addGameObject(Ferra.name,Ferra);
 gs.addGameObject(ServiceMinistry.name,ServiceMinistry);
+gs.addGameObject(Fleet.name,Fleet);
 Ferra.addObject(ServiceMinistry);
+Ferra.addObject(Fleet);
+
 Aegia.north = Ferra;

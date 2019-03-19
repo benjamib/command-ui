@@ -350,13 +350,18 @@ var Logs = [];
 let log1 = new Log("First Entry","1 March 2132");
 Logs.push(log1);
 log1.content = "Just took off from the AX1 shipyards with this old AX1-C. Cargo is loaded and we are heading for the rendevous five clicks west of Aegia. Should be there in a few days.";
+log1.OnRead = function() {
+  gs.gameFlags.explorerendevous = true;
+  gs.activeQuests.push(ExploreRendevous);
+  typeWriter("New quest added...(TODO for more details)");
+};
 let log2 = new Log("Cargo Manifest","1 March 2132");
 Logs.push(log2);
 log2.content = "Remote Detonators qty: 5\nCX85 Mining Charge qty: 5\nV.2 Delivery Drones qty: 5\n\nCERTIFIED AX1 CARGO AGENT 634ATY";
 let log3 = new Log("Orders","2 March 2132",true);
 log3.OnRead = function() {
   gs.gameFlags.lostorders = true;
-  gs.activeQuests.push(LostOrders);
+  gs.activeQuests.push(LostOrdersQst);
   typeWriter("New quest added...(TODO for more details)");
 };
 Logs.push(log3);

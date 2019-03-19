@@ -50,3 +50,62 @@ addNode(Serv_News,ServiceMinistry_Dialog);
 addNode(Serv_ord,ServiceMinistry_Dialog);
 
 ServiceMinistry.dialog = ServiceMinistry_Dialog;
+
+
+let Fleet = new SpaceObject("Fleet",false);
+
+Fleet.details = "The Service Ministry Fleet is in orbit around Ferra. You have an open comm link to your CO.";
+
+Fleet.about = "The Service Ministry Fleet is not the most powerful fighting force assembled in terms of pure size and firepower, but it has some of the most advanced tech in the known universe. The ships of the fleet when in from missions maintain orbit around Ferra. Currently most of the fleet is being utilized for the purposes of aiding construction of The Gate and only a small presence is currently in orbit. The command ship Hercules houses fleet command including your current CO Admiral Janitsky.";
+
+let hailfleet= {
+  tag:"Hail_Fleet",
+  content:"Fleet command this is Commander Scout Jones, Admiral Janitsky do you copy?",
+  choices: [gotoFleet1,gotoEnd]
+};
+let Fleet_1 = {
+  tag:"Fleet_1",
+  content:"Commander Jones! We were worried about you. Our sensors picked up an energy spike in the vicinity of your last reported location, and then your ship stopped broadcasting. What happened out there?",
+  choices:[gotoReply,gotoEnd]
+};
+
+function gotoFleet1(){
+  if(gs.gameFlags.fleet!== true){
+    gs.gameFlags.fleet = true;
+    return {option:"Next",next:"Fleet_1"};
+  }
+  else{
+    return null;
+  }
+}
+function gotoEnd(){
+  return {option:"End",next:null};
+}
+
+function gotoReply(){
+  return {option:"Next",next:"reply"};
+}
+let Fleet_reply = {
+  tag:"reply",
+  content:"Not sure Admiral sir, still trying to piece it together. I lost conciousness and came to as the ship systems were rebooting. Some of the logs were corrupted incluing the one containing my orders.",
+  choices:[gotoOrder,gotoEnd]
+};
+
+function gotoOrder(){
+  return {option:"What are my current orders?",next:"orders"};
+}
+
+let fleetOrders = {
+  tag:"orders",
+  content:"Commander Jones, you were commissioned by the Science Ministry to deliver some minning equipment to a contractor working at Halley's mine, not sure why the rendevous was out in sector 8,4. Argh, that Gate project can't end soon enough, tired of sending out our pilots on meaningless cargo runs, we are elite combat pilots, not errand boys.",
+  choices:[gotoEnd]
+};
+
+Fleet.initialDialog = "Hail_Fleet";
+var Fleet_Dialog = new Map();
+
+addNode(hailfleet,Fleet_Dialog);
+addNode(Fleet_1,Fleet_Dialog);
+addNode(Fleet_reply,Fleet_Dialog);
+addNode(fleetOrders,Fleet_Dialog);
+Fleet.dialog = Fleet_Dialog;
