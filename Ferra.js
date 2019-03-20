@@ -1,4 +1,4 @@
-let Ferra = new Location("Ferra",2,4);
+let Ferra = new Location("Ferra",3,3);
 
 Ferra.look = "Looming on the Sidhartha's viewscreen is Ferra, the Aegian moon. Ferra is a mostly carbon gray rock pockmarked with meteor impact sites. The surface glitters with the lights from the Service Ministry that is head quartered on the moon. To the east is the Service Ministry Fleet, warships gleaming in the light given off by the system's star Aegis. A steady stream of ships enters and leaves the airspace around Ferra, shuttling various cargo here and there.";
 

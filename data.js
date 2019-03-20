@@ -270,7 +270,7 @@ map = function(){
 setPosition = function(ret){
   
   //1,1 = 77, 151,225,299,373,447,521,595,
-  var index = 77 + 74 * (7-gs.currentLocation.pos.y) + (gs.currentLocation.pos.x-1) * 4;
+  var index = 77 + 74 * (gs.currentLocation.pos.y-1) + (gs.currentLocation.pos.x-1) * 4;
   ret = ret.substr(0,index) + "@" + ret.substr(index+1);
   return ret;
 };
