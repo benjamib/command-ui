@@ -16,7 +16,7 @@ function initGame()
       elem.requestFullscreen();
     }
    
-  var snd = new Audio("generic_sounds/acid5.wav"); // buffers automatically when created
+  var snd = new Audio("../generic_sounds/acid5.wav"); // buffers automatically when created
   snd.play();
   var initText="";
   typeWriter("!@#$!@#$WDFGSDFG#!$#@@RGB@$@$%@$%B@$B\n%$%TGWERG#^)#$*)#$()\nC!JC)!@#(RN@!C#!#$NV!@#?>\n@#<C!@#R!@#KR@!#:LCK!@#R!)@#RC!@#L:M!@#R:CL!K@#RC!)@#(R!@)#RCI!@#LRJ:!L@#RC:!L@\n#KRC)(!@#R)I:!@L#KRC!L:@#KRC!@LDJF:LVXZCVIQEFOI#)!@#${)#$@((@#$*%@#($%*@#($%*@#($%*#KJQK:J#$J@#$%OU#@$%OU#$}}#$@#$%UPI@#$%PIU@#$%PIU@#$%UUGJGWJEIFGP&^&^&@KJ$:J#$%:KJWFG(*@#:LJADLNBWROITK:N!@#R:OJFEGJJJJEEEXEXE (#$@#*$%P#@$% !@#$!@#$WDFGSDFG#!$#@@RGB@$@$%@$%B@$B\n%$%TGWERG#^)#$*)#$()\nC!JC)!@#(RN@!C#!#$NV!@#?>\n@#<C!@#R!@#KR@!#:LCK!@#R!)@#RC!@#L:M!@#R:CL!K@#RC!)@#(R!@)#RCI!@#LRJ:!L@#RC:!L@\n#KRC)(!@#R)I:!@L#KRC!L:@#KRC!@LDJF:LVXZCVIQEFOI#)!@#${)#$@((@#$*%@#($%*@#($%*@#($%*#KJQK:J#$J@#$%OU#@$%OU#$}}#$@#$%UPI@#$%\n.................................\n\nrebooting system...",25);
@@ -25,13 +25,13 @@ function initGame()
     if(dlg.open){
       dlg.close();
     }
-    snd = new Audio("generic_sounds/flagreturn.wav"); // buffers automatically when created
+    snd = new Audio("../generic_sounds/flagreturn.wav"); // buffers automatically when created
     snd.play();
     typeWriter(SAM());
   }, 2500);
   setTimeout(function () {
     gs.init=true;
-    music = new Audio(musicArr[musicIndex]); // buffers automatically when created
+    music = new Audio("../"+musicArr[musicIndex]); // buffers automatically when created
     music.play();
     music.addEventListener('ended',function(){
       musicIndex = musicIndex+1;
@@ -56,7 +56,7 @@ function processInput()
     if(key=='13' && gs.init===true)
     {
         
-        snd = new Audio("generic_sounds/itempick1.wav"); // buffers automatically when created
+        snd = new Audio("../generic_sounds/itempick1.wav"); // buffers automatically when created
         snd.play();
         var cmd = cmd_obj.value;
         if (cmd !== "")

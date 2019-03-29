@@ -52,6 +52,11 @@ gs.addGameObject(_3_5.name,_3_5);
 gs.addGameObject(mining_ship.name,mining_ship);
 gs.addGameObject(_2_5.name,_2_5);
 gs.addGameObject(black_market.name,black_market);
+gs.addGameObject(smuggler.name,smuggler);
+
+gs.addGameObject(_1_6.name,_1_6);
+gs.addGameObject(_1_7.name,_1_7);
+gs.addGameObject(_1_8.name,_1_8);
 
 Ferra.addObject(ServiceMinistry);
 Ferra.addObject(Fleet);
@@ -83,3 +88,12 @@ mining_ship.west = _3_5;
 _3_5.north = _3_4;
 _3_5.west = _2_5;
 _2_5.west = black_market;
+smuggler.south = _1_2;
+smuggler.east = _2_1;
+_2_1.east = _3_1;
+_1_2.south = _1_3;
+_1_3.south = _1_4;
+_1_4.south = black_market;
+black_market.south = _1_6;
+_1_6.south = _1_7;
+_1_7.south = _1_8;

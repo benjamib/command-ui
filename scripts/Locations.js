@@ -49,3 +49,36 @@ _2_5.about = "about sector 2,5";
 let black_market = new Location("Black Market",1,5);
 black_market.look = "The black market";
 black_market.about = "about the black market";
+
+let smuggler = new Location("Smuggler",1,1);
+smuggler.look = "A shady smuggler";
+smuggler.about = "This is a shady smuggler...";
+
+let _1_2 = new Location("1_2",1,2);
+_1_2.look = "an empty area of space, sector 1,2";
+_1_2.about = "about sector 1,2";
+
+let _2_1 = new Location("2_1",2,1);
+_2_1.look = "an empty area of space, sector 2,1";
+_2_1.about = "about sector 2,1";
+
+let _1_3 = new Location("1_3",1,3);
+_1_3.look = "an empty area of space, sector 1,3";
+_1_3.about = "about sector 1,3";
+
+let _1_4 = new Location("1_4",1,4);
+_1_4.look = "an empty area of space, sector 1,4";
+_1_4.about = "about sector 1,4";
+
+let _1_6 = new Location("1_6",1,6);
+_1_6.look = "an empty area of space, sector 1,6";
+_1_6.about = "about sector 1,6";
+
+
+let _1_7 = new Location("1_7",1,7);
+_1_7.look = "an empty area of space, sector 1,7";
+_1_7.about = "about sector 1,7";
+
+let _1_8 = new Location("1_8",1,8);
+_1_8.look = "an empty area of space, sector 1,8";
+_1_8.about = "about sector 1,8";
