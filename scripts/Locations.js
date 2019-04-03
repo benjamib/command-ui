@@ -82,3 +82,50 @@ _1_7.about = "about sector 1,7";
 let _1_8 = new Location("1_8",1,8);
 _1_8.look = "an empty area of space, sector 1,8";
 _1_8.about = "about sector 1,8";
+
+let _2_8 = new Location("2_8",2,8);
+_2_8.look = "an empty area of space, sector 2,8";
+_2_8.about = "about sector 2,8";
+
+let _3_8 = new Location("3_8",3,8);
+_3_8.look = "an empty area of space, sector 3,8";
+_3_8.about = "about sector 3,8";
+
+let research_ship = new Location("research_ship",3,7);
+research_ship.look = "the research ship archeimedes";
+research_ship.about = "about a research ship";
+
+let black_hole = new Location("black hole",4,8);
+black_hole.look = "Ahead there lies an ominous dark prexence in the area. The ship sensors pick up a small but intense black hole in this sector of sapce.";
+black_hole.about = "It's a black hole";
+
+let _5_8 = new Location("5_8",5,8);
+_5_8.look = "an empty area of space, sector 5,8";
+_5_8.about = "about sector 5,8";
+let _6_8 = new Location("6_8",6,8);
+_6_8.look = "an empty area of space, sector 6,8";
+_6_8.about = "about sector 6,8";
+let _7_8 = new Location("7_8",7,8);
+_7_8.look = "an empty area of space, sector 7,8";
+_7_8.about = "about sector 7,8";
+let _8_8 = new Location("8_8",8,8);
+_8_8.look = "an empty area of space, sector 8,8";
+_8_8.about = "about sector 8,8";
+let _8_7 = new Location("8_7",8,7);
+_8_7.look = "an empty area of space, sector 8,7";
+_8_7.about = "about sector 8,7";
+let station_zero_six_seven = new Location("Station Zero Six Seven",7,7);
+station_zero_six_seven.look = "Station Zero Six seven";
+station_zero_six_seven.about = "about Station Zero Six Seven";
+let _6_7 = new Location("6_7",6,7);
+_6_7.look = "an empty area of space, sector 6,7";
+_6_7.about = "about sector 6,7";
+let _5_7 = new Location("5_7",5,7);
+_5_7.look = "an empty area of space, sector 5,7";
+_5_7.about = "about sector 5,7";
+let _4_7 = new Location("4_7",4,7);
+_4_7.look = "an empty area of space, sector 4,7";
+_4_7.about = "about sector 4,7";
+let _3_7 = new Location("3_7",3,7);
+_3_7.look = "an empty area of space, sector 3,7";
+_3_7.about = "about sector 3,7";
