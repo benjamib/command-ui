@@ -12,19 +12,19 @@ _5_3.about = "about sector 5,3";
 
 let _5_2 = new Location("5_2",5,2);
 _5_2.look = "an empty area of space, sector 5,2";
-_5_2.about = "about sector 5,2"
+_5_2.about = "about sector 5,2";
 
 let _5_1 = new Location("5_1",5,1);
 _5_1.look = "an empty area of space, sector 5,1";
-_5_1.about = "about sector 5,1"
+_5_1.about = "about sector 5,1";
 
 let _4_1 = new Location("4_1",4,1);
 _4_1.look = "an empty area of space, sector 4,1";
-_4_1.about = "about sector 4,1"
+_4_1.about = "about sector 4,1";
 
 let _3_1 = new Location("3_1",3,1);
 _3_1.look = "an empty area of space, sector 3,1";
-_3_1.about = "about sector 3,1"
+_3_1.about = "about sector 3,1";
 
 let _3_4 = new Location("3_4",3,4);
 _3_4.look = "an empty area of space, sector 3,4";
@@ -37,14 +37,6 @@ mining_ship.about = "About a mining ship used to mine the comet";
 let comet = new Location("Comet",5,5);
 comet.look = "It's a comet";
 comet.about = "About a comet";
-
-let _3_5 = new Location("3_5",3,5);
-_3_5.look = "an empty area of space, sector 3,5";
-_3_5.about = "about sector 3,5";
-
-let _2_5 = new Location("2_5",2,5);
-_2_5.look = "an empty area of space, sector 2,5";
-_2_5.about = "about sector 2,5";
 
 let black_market = new Location("Black Market",1,5);
 black_market.look = "The black market";
@@ -127,3 +119,87 @@ _4_7.about = "about sector 4,7";
 let _3_7 = new Location("3_7",3,7);
 _3_7.look = "an empty area of space, sector 3,7";
 _3_7.about = "about sector 3,7";
+
+let _7_6 = new Location("7_6",7,6);
+_7_6.look = "an empty area of space, sector 7,6";
+_7_6.about = "about sector 7,6";
+
+let _8_6 = new Location("8_6",8,6);
+_8_6.look = "an empty area of space, sector 8,6";
+_8_6.about = "about sector 8,6";
+
+let _6_6 = new Location("6_6",6,6);
+_6_6.look = "an empty area of space, sector 6,6";
+_6_6.about = "about sector 6,6";
+
+let _5_6 = new Location("5_6",5,6);
+_5_6.look = "an empty area of space, sector 5,6";
+_5_6.about = "about sector 5,6";
+
+let _4_6 = new Location("4_6",4,6);
+_4_6.look = "an empty area of space, sector 4,6";
+_4_6.about = "about sector 4,6";
+
+let _3_6 = new Location("3_6",3,6);
+_3_6.look = "an empty area of space, sector 3,6";
+_3_6.about = "about sector 3,6";
+
+let _2_6 = new Location("2_6",2,6);
+_2_6.look = "an empty area of space, sector 2,6";
+_2_6.about = "about sector 2,6";
+
+let _2_7 = new Location("2_7",2,7);
+_2_7.look = "an empty area of space, sector 2,7";
+_2_7.about = "about sector 2,7";
+
+let _8_5 = new Location("8_5",8,5);
+_8_5.look = "an empty area of space, sector 8,5";
+_8_5.about = "about sector 8,5";
+let _7_5 = new Location("7_5",7,5);
+_7_5.look = "an empty area of space, sector 7,5";
+_7_5.about = "about sector 7,5";
+let _6_5 = new Location("6_5",6,5);
+_6_5.look = "an empty area of space, sector 6,5";
+_6_5.about = "about sector 6,5";
+let _3_5 = new Location("3_5",3,5);
+_3_5.look = "an empty area of space, sector 3,5";
+_3_5.about = "about sector 3,5";
+let _2_5 = new Location("2_5",2,5);
+_2_5.look = "an empty area of space, sector 2,5";
+_2_5.about = "about sector 2,5";
+
+let _8_1 = new Location("8_1",8,1);
+_8_1.look = "an empty area of space, sector 8,1";
+_8_1.about = "about sector 8,1";
+
+let _8_2 = new Location("8_2",8,2);
+_8_2.look = "an empty area of space, sector 8,2";
+_8_2.about = "about sector 8,2";
+
+let _8_3 = new Location("8_3",8,3);
+_8_3.look = "an empty area of space, sector 8,3";
+_8_3.about = "about sector 8,3";
+
+let old_republic= new Location("old republic",8,4);
+old_republic.look = "The debris of the ship known as the Old Republic";
+old_republic.about = "about old republic";
+
+let _7_1 = new Location("7_1",7,1);
+_7_1.look = "an empty area of space, sector 7,1";
+_7_1.about = "about sector 7,1";
+
+let rendevous = new Location("rendevous",7,2);
+rendevous.look = "the rendevous point";
+rendevous.about = "about rendevous";
+
+let _7_3 = new Location("7_3",7,3);
+_7_3.look = "an empty area of space, sector 7,3";
+_7_3.about = "about sector 7,3";
+
+let _7_4= new Location("old republic",7,4);
+_7_4.look = "an empty area of space, sector 7,4";
+_7_4.about = "about sector 7,4";
+
+let _7_5 = new Location("7_5",7,5);
+_7_5.look = "an empty area of space, sector 7,5";
+_7_5.about = "about sector 7,5";
