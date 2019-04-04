@@ -114,9 +114,7 @@ _8_8.about = "about sector 8,8";
 let _8_7 = new Location("8_7",8,7);
 _8_7.look = "an empty area of space, sector 8,7";
 _8_7.about = "about sector 8,7";
-let station_zero_six_seven = new Location("Station Zero Six Seven",7,7);
-station_zero_six_seven.look = "Station Zero Six seven";
-station_zero_six_seven.about = "about Station Zero Six Seven";
+
 let _6_7 = new Location("6_7",6,7);
 _6_7.look = "an empty area of space, sector 6,7";
 _6_7.about = "about sector 6,7";

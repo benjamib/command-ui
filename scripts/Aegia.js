@@ -13,27 +13,53 @@ Aegia_Obj.about = "Public news feed from the Aegia press corps. Contains the lat
 
 Aegia_Obj.initialDialog = "AEGIA_FEED";
 
+function end(){
+  return {option:"End",next:null};
+}
 let AEGIA_FEED = {
   tag:"AEGIA_FEED",
   content:"Rumors have been surfacing of strong arm tactics used by the Science Ministry to silence any opposition to The Gate. Watch dog groups are worried that there have been abuses of power and corruption that need to be investigated.",
-  choices:[function(){return{option:"Next Story",next:"AEGIA_FEED2"};},function(){return{option:"End",next:null};}]
+  choices:[function(){return{option:"Next Story",next:"AEGIA_FEED2"};},end]
 };
 
 let AEGIA_FEED2 = {
   tag:"AEGIA_FEED2",
   content:"The Service Ministry has opened an investigation into the group inhabiting Station Zero Six Seven. The group has been suspected of planning and carrying out terrorist acts against The Gate and Science Ministry personnel.",
-  choices:[function(){return{option:"End",next:null};}]
+  choices:[function(){return{option:"Next Story",next:"AEGIA_FEED3"};},end]
 };
+
+let AEGIA_FEED3 = {
+  tag:"AEGIA_FEED3",
+  content:"Be a part of human history and join GateCorp on the first jump. Slots are going fast so order today!",
+  choices:[function(){return {option:"Next Story",next:"AEGIA_FEED4"};},end]
+};
+
+let AEGIA_FEED4 = {
+  tag:"AEGIA_FEED4",
+  content:"Reports out of the Science Ministry indicate that there is a shortage of raw materials needed in Gate construction. Sources within the Science Ministry say that shortages will lead to small project delays as alternative materials are identified and sourced",
+  choices:[function(){return {option:"Next Story",next:"AEGIA_FEED5"};},end]
+};
+
+let AEGIA_FEED5 = {
+  tag:"AEGIA_FEED5",
+  content:"The Aegian sensor array picked up a strange energy disturbance in sector 7,2. Authorities advise caution to any ship traffic heading near that sector until a full investigation of the disturbance can be concluded.",
+  choices:[end]
+};
+
+
 
 var Aegia_Dialog = new Map();
 
 addNode(AEGIA_FEED,Aegia_Dialog);
 addNode(AEGIA_FEED2,Aegia_Dialog);
+addNode(AEGIA_FEED3,Aegia_Dialog);
+addNode(AEGIA_FEED4,Aegia_Dialog);
+addNode(AEGIA_FEED5,Aegia_Dialog);
 
 Aegia_Obj.dialog = Aegia_Dialog;
 Aegia.addObject(Aegia_Obj);
 Aegia.addObject(ScienceMinistry);
-let gs = new GameState(Aegia,[],{});
+let gs = new GameState(station_zero_six_seven,[],{});
 gs.addGameObject(Aegia.name,Aegia);
 gs.addGameObject(ScienceMinistry.name,ScienceMinistry);
 gs.addGameObject(Aegia_Obj.name,Aegia_Obj);
@@ -57,6 +83,37 @@ gs.addGameObject(smuggler.name,smuggler);
 gs.addGameObject(_1_6.name,_1_6);
 gs.addGameObject(_1_7.name,_1_7);
 gs.addGameObject(_1_8.name,_1_8);
+
+gs.addGameObject(_2_8.name,_2_8);
+_2_8.west = _1_8;
+gs.addGameObject(_3_8.name,_3_8);
+_3_8.west = _2_8;
+gs.addGameObject(research_ship.name,research_ship);
+_3_8.north = research_ship;
+
+gs.addGameObject(_5_8.name,_5_8);
+_5_8.west = black_hole;
+
+gs.addGameObject(_6_8.name,_6_8);
+_6_8.west = _5_8;
+
+gs.addGameObject(_7_8.name,_7_8);
+_7_8.west = _6_8;
+
+gs.addGameObject(_8_8.name,_8_8);
+_8_8.west = _7_8;
+
+gs.addGameObject(_8_7.name,_8_7);
+_8_7.south = _8_8;
+
+gs.addGameObject(station_zero_six_seven.name,station_zero_six_seven);
+_8_7.west = station_zero_six_seven;
+_7_8.north = station_zero_six_seven;
+
+
+
+gs.addGameObject(black_hole.name,black_hole);
+_3_8.east = black_hole;
 
 Ferra.addObject(ServiceMinistry);
 Ferra.addObject(Fleet);

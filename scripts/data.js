@@ -342,10 +342,6 @@ LostOrdersQst.objectives.set(LostOrdersQst_1.id,LostOrdersQst_1);
 LostOrdersQst.currentObjective = LostOrdersQst_1;
 
 
-let Station_067 = new SpaceObject("station_067",false);
-Station_067.dialog = StationDialog;
-Station_067.details = "Station Zero Six Seven is a remote station. It houses a few hundred people. The inhabitents are mostly people that want to get away from Aegia, and people in general.";
-
 var Logs = [];
 let log1 = new Log("First Entry","1 March 2132");
 Logs.push(log1);
