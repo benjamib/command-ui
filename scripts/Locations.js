@@ -200,6 +200,20 @@ let _7_4= new Location("old republic",7,4);
 _7_4.look = "an empty area of space, sector 7,4";
 _7_4.about = "about sector 7,4";
 
-let _7_5 = new Location("7_5",7,5);
-_7_5.look = "an empty area of space, sector 7,5";
-_7_5.about = "about sector 7,5";
+let _6_1 = new Location("6_1",6,1);
+_6_1.look = "an empty area of space, sector 6,1";
+_6_1.about = "about sector 6,1";
+
+let _6_2 = new Location("6_2",6,2);
+_6_2.look = "an empty area of space, sector 6,2";
+_6_2.about = "about sector 6,2";
+
+let _6_3 = new Location("6_3",6,3);
+_6_3.look = "an empty area of space, sector 6,3";
+_6_3.about = "about sector 6,3";
+
+let _6_4 = new Location("6_4",6,4);
+_6_4.look = "an empty area of space, sector 6,4";
+_6_4.about = "about sector 6,4";
+
+

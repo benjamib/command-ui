@@ -126,6 +126,7 @@ gs.addGameObject(_4_7.name,_4_7);
 _4_7.west = research_ship;
 _4_7.south = black_hole;
 _4_7.north = _4_6;
+_4_6.north = mining_ship;
 
 gs.addGameObject(_2_7.name,_2_7);
 _2_7.west = _1_7;
@@ -185,7 +186,8 @@ Aegia.north = Ferra;
 Aegia.south = _4_4;
 _4_4.east = _5_4;
 _5_4.north = _5_3;
-Aegia.east = _5_4;
+_5_3.ease = _6_3;
+Aegia.east = _5_3;
 _5_3.north = _5_2;
 _5_2.north = _5_1;
 _5_2.west = Ferra;
@@ -238,3 +240,32 @@ gs.addGameObject(_7_3.name,_7_3);
 gs.addGameObject(rendevous.name,rendevous);
 gs.addGameObject(_7_1.name,_7_1);
 gs.addGameObject(_7_4.name,_7_4);
+
+gs.addGameObject(_6_1.name,_6_1);
+gs.addGameObject(_6_2.name,_6_2);
+gs.addGameObject(_6_3.name,_6_3);
+gs.addGameObject(_6_4.name,_6_4);
+
+_6_1.east = _7_1;
+_6_1.west = _5_1;
+_6_1.south = _6_2;
+
+_6_2.east = rendevous;
+_6_2.west = _5_2;
+_6_2.south = _6_3;
+
+_6_3.east = _7_3;
+_6_3.west = _5_3;
+_6_3.south = _6_4;
+
+_6_4.east = _7_4;
+_6_4.west = _5_4;
+_6_4.south = _6_5;
+_7_5.north = _7_4;
+_7_5.east = _8_5;
+_7_5.west = _6_5;
+_7_4.north = _7_3;
+_7_3.north = rendevous;
+rendevous.north = _7_1;
+
+
