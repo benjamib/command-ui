@@ -8,6 +8,9 @@ var musicArr=["generic_sounds/music/start_theme.ogg","generic_sounds/music/Szymo
 
 document.addEventListener("mouseup", handleEvent);
 window.addEventListener("load", initGame);
+
+
+//game initialization function sets focus on the command line and outputs the initial text to the screen
 function initGame()
 {
     document.getElementById("command-line").focus();
@@ -19,6 +22,7 @@ function initGame()
   var snd = new Audio("../generic_sounds/acid5.wav"); // buffers automatically when created
   snd.play();
   var initText="";
+  //the initial text that makes it seem like the ship returned from an error state
   typeWriter("!@#$!@#$WDFGSDFG#!$#@@RGB@$@$%@$%B@$B\n%$%TGWERG#^)#$*)#$()\nC!JC)!@#(RN@!C#!#$NV!@#?>\n@#<C!@#R!@#KR@!#:LCK!@#R!)@#RC!@#L:M!@#R:CL!K@#RC!)@#(R!@)#RCI!@#LRJ:!L@#RC:!L@\n#KRC)(!@#R)I:!@L#KRC!L:@#KRC!@LDJF:LVXZCVIQEFOI#)!@#${)#$@((@#$*%@#($%*@#($%*@#($%*#KJQK:J#$J@#$%OU#@$%OU#$}}#$@#$%UPI@#$%PIU@#$%PIU@#$%UUGJGWJEIFGP&^&^&@KJ$:J#$%:KJWFG(*@#:LJADLNBWROITK:N!@#R:OJFEGJJJJEEEXEXE (#$@#*$%P#@$% !@#$!@#$WDFGSDFG#!$#@@RGB@$@$%@$%B@$B\n%$%TGWERG#^)#$*)#$()\nC!JC)!@#(RN@!C#!#$NV!@#?>\n@#<C!@#R!@#KR@!#:LCK!@#R!)@#RC!@#L:M!@#R:CL!K@#RC!)@#(R!@)#RCI!@#LRJ:!L@#RC:!L@\n#KRC)(!@#R)I:!@L#KRC!L:@#KRC!@LDJF:LVXZCVIQEFOI#)!@#${)#$@((@#$*%@#($%*@#($%*@#($%*#KJQK:J#$J@#$%OU#@$%OU#$}}#$@#$%UPI@#$%\n.................................\n\nrebooting system...",25);
   setTimeout(function () {
     var dlg = document.getElementById("error")
@@ -29,6 +33,7 @@ function initGame()
     snd.play();
     typeWriter(SAM());
   }, 2500);
+  //waits for the appropriate time to start the music, the built in delay is to make sure that we can get focus for CHROME
   setTimeout(function () {
     gs.init=true;
     music = new Audio("../"+musicArr[musicIndex]); // buffers automatically when created
@@ -41,23 +46,24 @@ function initGame()
       music.load();
       music.play();
     });
-  }, 1);
+  }, 2500);
     
 }
-
+//event handler for the mouse click event
 function handleEvent()
 {
     document.getElementById("command-line").focus();
 }
+//this handles the player input command
 function processInput()
 {
-    var key = event.keyCode;
+    var key = event.keyCode;//the key the player pressed
     var cmd_obj = document.getElementById("command-line");
-    if(key=='13' && gs.init===true)
+    if(key=='13' && gs.init===true)//if the game is initialized and the enter key is pressed 
     {
         
         snd = new Audio("../generic_sounds/itempick1.wav"); // buffers automatically when created
-        snd.play();
+        snd.play();//play the sound 
         var cmd = cmd_obj.value;
         if (cmd !== "")
         {
@@ -69,7 +75,7 @@ function processInput()
         }
 
     }
-    if(key=='38')
+    if(key=='38')//handles the "up arrow" to retreive a command from the command history
     {
         if(cmdHistory[cmdHistoryIndex]!==undefined)
             {
@@ -83,11 +89,13 @@ function processInput()
     
 
 }
+//outputs the result of the players command
 function outputResult(cmd,cmd_obj){
   var ret_text = processCommand(cmd);
   typeWriter(ret_text);
   cmd_obj.value="";
 }
+//the main command handler function that takes in the player entered text, parses and then executes the command
 function processCommand(cmd)
 {
   cmdHistory.push(cmd);
@@ -98,7 +106,7 @@ function processCommand(cmd)
         typeWriter("command '" + cmd +"' is not recognized");
         return;
   }
-  var cmdArray =[];//cmd.split(" ");
+  var cmdArray =[];
   var index = cmd.indexOf(" ");
   if(index ===-1){
     cmdArray[0] = cmd;
@@ -106,10 +114,7 @@ function processCommand(cmd)
     cmdArray[0] = cmd.substring(0,index);
     cmdArray[1] = cmd.substring(index+1);
   }
-    //cmdArray[0] = cmdArray[0].toLowerCase();
-    //if(cmdArray[1] !== undefined){
-    //  cmdArray[1] = cmdArray[1].toLowerCase();
-    //}
+  
     switch(cmdArray[0])
     {
         case "move":
@@ -166,6 +171,7 @@ function processCommand(cmd)
             return "command '" + cmd +"' is not recognized";
     }
 }
+//takes in a cardinal direction and processes the command to look at what is in that direction
 function handleLook(direction)
 {
   var param = "around";
@@ -191,6 +197,7 @@ function handleLook(direction)
     return "I do not know how to look at " + direction;
   }
 }
+//takes in a cardinal diretion and moves th eplayer in that direction if possible
 function handleMove(direction){
   if(direction === "north"){
     return MoveNorth();
@@ -208,18 +215,22 @@ function handleMove(direction){
     return "I do not know how to move " + direction;
   }
 }
+//handle the read command, takes in the log index and prints the log contents
 read = function(param){
   if(param === ""){
 		return "Need to specify a log number";
 	}
 	return ReadLog(param);
 };
+//handles the where command that returns the location of your ship
 where = function(){
   return GetLocation();
 };
+//returns the information about the player
 whoami = function(){
   return GetWhoami();
 };
+//returns the command index 
 SAM = function(){
   return GetAboutSAM();
 };
