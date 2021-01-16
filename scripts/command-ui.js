@@ -41,7 +41,7 @@ function initGame()
       music.load();
       music.play();
     });
-  }, 1);
+  }, 2500);
     
 }
 
