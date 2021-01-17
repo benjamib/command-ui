@@ -25,7 +25,7 @@ function end(){
 
   let ShipyardServices_RepairLogs = {
     tag:"ShipyardServices_RepairLogs",
-    content:"@Sidhartha: I have some corrupted ship logs that I would love some help with.//n@Ship Master: No problem Commander, I will have those recovered for you ASAP...",
+    content:"@Sidhartha: I have some corrupted ship logs that I would love some help with.<br/><br/>@Ship Master: No problem Commander, I will have those recovered for you ASAP...",
     choices:[end]
   };
 
