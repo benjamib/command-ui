@@ -237,7 +237,7 @@ body{
   pointer-events: none;
 }
 .crt {
-  /*animation: textShadow 4.6s infinite;*/
+  animation: textShadow .2s infinite;
   text-shadow: 0 0 10px #C8C8C8;
 }
 .error {
@@ -268,7 +268,7 @@ body{
   cursor: pointer; /* Pointer/hand icon */
   width: 100%; /* Set a width if needed */
   display: block; /* Make the buttons appear below each other */
-  border: border: 1px solid rgb(50,255,0);
+  border: 1px solid rgb(50,255,0);
   background-color: transparent;
   padding: 14px 28px;
   font-family:"VT323",monospace;
@@ -300,4 +300,5 @@ dialog{
     left: 0%;
 	
 }
+
 
