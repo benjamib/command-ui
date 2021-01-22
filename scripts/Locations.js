@@ -26,10 +26,6 @@ let _3_1 = new Location("3_1",3,1);
 _3_1.look = "an empty area of space, sector 3,1";
 _3_1.about = "about sector 3,1";
 
-let _3_4 = new Location("3_4",3,4);
-_3_4.look = "an empty area of space, sector 3,4";
-_3_4.about = "about sector 3,4";
-
 let mining_ship = new Location("Mining Ship",4,5);
 mining_ship.look = "It's a mining ship used to mine the comet";
 mining_ship.about = "About a mining ship used to mine the comet";
@@ -53,6 +49,22 @@ _1_2.about = "about sector 1,2";
 let _2_1 = new Location("2_1",2,1);
 _2_1.look = "an empty area of space, sector 2,1";
 _2_1.about = "about sector 2,1";
+
+let _2_2 = new Location("2_2",2,2);
+_2_2.look = "an empty area of space, sector 2,2";
+_2_2.about = "about sector 2,2";
+
+let _3_2 = new Location("3_2",3,2);
+_3_2.look = "an empty area of space, sector 3,2";
+_3_2.about = "about sector 3,2";
+
+let _4_2 = new Location("4_2",4,2);
+_4_2.look = "an empty area of space, sector 4,2";
+_4_2.about = "about sector 4,2";
+
+let _4_3 = new Location("4_3",4,3);
+_4_3.look = "an empty area of space, sector 4,3";
+_4_3.about = "about sector 4,3";
 
 let _1_3 = new Location("1_3",1,3);
 _1_3.look = "an empty area of space, sector 1,3";
@@ -196,7 +208,7 @@ let _7_3 = new Location("7_3",7,3);
 _7_3.look = "an empty area of space, sector 7,3";
 _7_3.about = "about sector 7,3";
 
-let _7_4= new Location("old republic",7,4);
+let _7_4= new Location("7_4",7,4);
 _7_4.look = "an empty area of space, sector 7,4";
 _7_4.about = "about sector 7,4";
 
